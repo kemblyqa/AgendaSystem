@@ -1,28 +1,28 @@
 function Agenda(id, name, agenda) {
     this.id = id;
     this.name = name;
-    this.agenda;
+    this.agenda = agenda;
 }
 
 // * Setter
-Agenda.prototype.setId = (id) => {
+Agenda.prototype.setId = function setId(id) {
     this.id = id;
 }
-Agenda.prototype.setName = (name) => {
+Agenda.prototype.setName = function setName(name) {
     this.name = name;
 }
-Agenda.prototype.setAgenda = (agenda) => {
+Agenda.prototype.setAgenda = function setAgenda(agenda) {
     this.agenda = agenda;
 }
 
 // * Getters
-Agenda.prototype.getId = () => {
+Agenda.prototype.getId = function getId() {
     return this.id;
 }
-Agenda.prototype.getName = () => {
+Agenda.prototype.getName = function getName() {
     return this.name;
 }
-Agenda.prototype.getAgenda = () => {
+Agenda.prototype.getAgenda = function getAgenda() {
     return this.agenda;
 }
 
