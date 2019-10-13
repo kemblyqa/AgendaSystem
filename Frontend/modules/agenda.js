@@ -7,14 +7,21 @@ class AgendaManager {
         this.getAgendaList();
     }
 
+    /**
+     * @function getAgendaList retrieves the agenda from server
+     */
     getAgendaList() {
-        this.xhrRequest.getAgendas((data)=>{
+        this.xhrRequest.getAgendas((data) => {
             console.log(data);
             this.localData = new LocalData(data);
             this.populateList(this.localData.remoteData);
         })
     }
 
+    /**
+     * @function populateList fill the list with agendas
+     * @param {*} agendaList the list with agendas from localstorage
+     */
     populateList(agendaList) {
         var agendaItemsContainer = document.getElementById("agenda-list-manager");
 
@@ -26,7 +33,16 @@ class AgendaManager {
         for (var i = 0; i < agendaList.length; i++) {
             var newItem = document.createElement("a");
             newItem.id = agendaList[i].id;
+            newItem.name = "itemAgenda";
             newItem.appendChild(document.createTextNode(`Sesión N° ${agendaList[i].id} \n Nombre: ${agendaList[i].name_a}`));
+            newItem.addEventListener("click", function() {
+                var current = document.getElementsByClassName("active");
+                if (current.length > 0) {
+                    current[0].className = current[0].className.replace(" active", "");
+                }
+                this.className += " active";
+                //llamar funcion para mostrar agenda
+            });
             agendaItemsContainer.appendChild(newItem);
         }
     }
