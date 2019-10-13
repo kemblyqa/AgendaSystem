@@ -3,6 +3,7 @@ class LocalData {
         this.remoteData = remoteData;
         this.updateLocalStorage(this.remoteData);
     }
+
     /**
      * @function updateStorage updates the items stored with the new values
      * @param {Array} data array with the JSON from the web service 
@@ -10,22 +11,24 @@ class LocalData {
     updateLocalStorage(data) {
         for (var i = 0; i < data.length; i++) {
             if (!this.existStorageItem(data[i].id) || !this.needUpdateStorageItem(data[i].id, data[i])) {
-                this.setLocalStorageItem(data[i].id, data[i]);
+                this.updateLocalStorageItem(data[i].id, data[i]);
             }
         }
     }
+
     /**
      * @function clearLocalStorageList remove all items added
      */
     clearLocalStorageList() {
         localStorage.clear();
     }
+    
     /**
      * @function setLocalStorageItem Save the new item to localstorage
      * @param {*} key the key to access to the localstorage value
      * @param {*} value the information about the agenda
      */
-    setLocalStorageItem(key, value) {
+    updateLocalStorageItem(key, value) {
         localStorage.setItem(key, JSON.stringify(value));
     }
 

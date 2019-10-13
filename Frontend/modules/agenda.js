@@ -12,7 +12,6 @@ class AgendaManager {
      */
     getAgendaList() {
         this.xhrRequest.getAgendas((data) => {
-            console.log(data);
             this.localData = new LocalData(data);
             this.populateList(this.localData.remoteData);
         })
@@ -42,6 +41,7 @@ class AgendaManager {
                 }
                 this.className += " active";
                 //llamar funcion para mostrar agenda
+                document.getElementById('container-id').style.display='';
             });
             agendaItemsContainer.appendChild(newItem);
         }
