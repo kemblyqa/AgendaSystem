@@ -8,11 +8,11 @@ class AgendaManager {
     }
 
     getAgendaList() {
-        this.xhrRequest.getAgendas(this.response.bind(this))
-    }
-
-    response(data){
-        console.log(data);
+        this.xhrRequest.getAgendas((data)=>{
+            console.log(data);
+            this.localData = new LocalData(data);
+            this.populateList(this.localData.remoteData);
+        })
     }
 
     populateList(agendaList) {
@@ -23,10 +23,10 @@ class AgendaManager {
             agendaItemsContainer.removeChild(agendaItemsContainer.firstChild);
         }
         // Populate with agendas.
-        for (var i = 0; i < this.prueba.data.length; i++) {
+        for (var i = 0; i < agendaList.length; i++) {
             var newItem = document.createElement("a");
-            newItem.id = this.prueba.data[i].agenda.id;
-            newItem.appendChild(document.createTextNode(`Sesión N° ${this.prueba.data[i].id} \n Nombre: ${this.prueba.data[i].name}`));
+            newItem.id = agendaList[i].id;
+            newItem.appendChild(document.createTextNode(`Sesión N° ${agendaList[i].id} \n Nombre: ${agendaList[i].name_a}`));
             agendaItemsContainer.appendChild(newItem);
         }
     }
