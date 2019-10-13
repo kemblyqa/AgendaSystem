@@ -1,4 +1,4 @@
-import { AgendaManager } from './agenda.js';
+import { AgendaManager } from './modules/agenda.js';
 
 var agenda = new AgendaManager();
 agenda.populateList();
