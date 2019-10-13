@@ -7,7 +7,7 @@ class Ajax {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                callBack(this.responseText);
+                callBack(JSON.parse(this.responseText));
             }
         };
         // * True means asynchronous call.
@@ -19,7 +19,7 @@ class Ajax {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                callBack(this.responseText);
+                callBack(JSON.parse(this.responseText));
             }
         };
         // * True means asynchronous call.
@@ -33,8 +33,7 @@ class Ajax {
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                var json = JSON.parse(this.responseText);
-                callBack(json);
+                callBack(JSON.parse(this.responseText));
             }
         }
         var data = JSON.stringify(agenda);

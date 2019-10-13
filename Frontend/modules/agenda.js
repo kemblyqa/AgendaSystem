@@ -2,116 +2,17 @@ import { LocalData } from '../modules/local-data.js';
 import { Ajax } from '../modules/ajax.js';
 const baseUrl = "https://api-voting-system.herokuapp.com";
 class AgendaManager {
-    prueba = {
-        "data": [
-            {
-                "id": "dasfiorwio1",
-                "name": "ndiwhfurwb bbbbbbbbbbbbbbbbb",
-                "agenda": [
-                    {
-                        "point": "viaje",
-                        "recitals": [
-                            "hdasdiasj",
-                            "fnsdnfdos"
-                        ],
-                        "agreements": [
-                            {
-                                "agreement": "acuerdo1",
-                                "vote": {
-                                    "id": 1,
-                                    "favor": 3,
-                                    "nay": 2,
-                                    "blank": 9
-                                }
-                            },
-                            {
-                                "agreement": "acuerdo1",
-                                "vote": {
-                                    "id": 1,
-                                    "favor": 3,
-                                    "nay": 2,
-                                    "blank": 9
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "point": "viaje",
-                        "agreements": [
-                            {
-                                "agreement": "acuerdo1",
-                                "vote": {
-                                    "id": 1,
-                                    "favor": 3,
-                                    "nay": 2,
-                                    "blank": 9
-                                }
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "id": "dasfiorwio2",
-                "name": "ndiwhfurw",
-                "agenda": [
-                    {
-                        "point": "viaje",
-                        "recitals": [
-                            "hdasdiasj",
-                            "fnsdnfdos"
-                        ],
-                        "agreements": [
-                            {
-                                "agreement": "acuerdo1",
-                                "vote": {
-                                    "id": 1,
-                                    "favor": 3,
-                                    "nay": 2,
-                                    "blank": 9
-                                }
-                            },
-                            {
-                                "agreement": "acuerdo1",
-                                "vote": {
-                                    "id": 1,
-                                    "favor": 3,
-                                    "nay": 2,
-                                    "blank": 9
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "point": "viaje",
-                        "agreements": [
-                            {
-                                "agreement": "acuerdo1",
-                                "vote": {
-                                    "id": 1,
-                                    "favor": 3,
-                                    "nay": 2,
-                                    "blank": 9
-                                }
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
-    localDataStorsge = [];
     constructor() {
         this.xhrRequest = new Ajax(baseUrl);
         this.getAgendaList();
     }
 
     getAgendaList() {
-        // this.xhrRequest.get(function (data) {
-        //     console.log(data);
-        //     this.localDataStorsge = new LocalData(data);
-        //     // this.populateList(this.localDataStorsge.remoteData);
-        // });
+        this.xhrRequest.getAgendas(this.response.bind(this))
+    }
+
+    response(data){
+        console.log(data);
     }
 
     populateList(agendaList) {

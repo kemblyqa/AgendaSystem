@@ -1,6 +1,101 @@
 [
     {
+        "id": "dasfiorwio1",
+        "name": "ndiwhfurwb bbbbbbbbbbbbbbbbb",
+        "agenda": [
+            {
+                "point": "viaje",
+                "recitals": [
+                    "hdasdiasj",
+                    "fnsdnfdos"
+                ],
+                "agreements": [
+                    {
+                        "agreement": "acuerdo1",
+                        "vote": {
+                            "id": 1,
+                            "favor": 3,
+                            "nay": 2,
+                            "blank": 9
+                        }
+                    },
+                    {
+                        "agreement": "acuerdo1",
+                        "vote": {
+                            "id": 1,
+                            "favor": 3,
+                            "nay": 2,
+                            "blank": 9
+                        }
+                    }
+                ]
+            },
+            {
+                "point": "viaje",
+                "agreements": [
+                    {
+                        "agreement": "acuerdo1",
+                        "vote": {
+                            "id": 1,
+                            "favor": 3,
+                            "nay": 2,
+                            "blank": 9
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "dasfiorwio2",
+        "name": "ndiwhfurw",
+        "agenda": [
+            {
+                "point": "viaje",
+                "recitals": [
+                    "hdasdiasj",
+                    "fnsdnfdos"
+                ],
+                "agreements": [
+                    {
+                        "agreement": "acuerdo1",
+                        "vote": {
+                            "id": 1,
+                            "favor": 3,
+                            "nay": 2,
+                            "blank": 9
+                        }
+                    },
+                    {
+                        "agreement": "acuerdo1",
+                        "vote": {
+                            "id": 1,
+                            "favor": 3,
+                            "nay": 2,
+                            "blank": 9
+                        }
+                    }
+                ]
+            },
+            {
+                "point": "viaje",
+                "agreements": [
+                    {
+                        "agreement": "acuerdo1",
+                        "vote": {
+                            "id": 1,
+                            "favor": 3,
+                            "nay": 2,
+                            "blank": 9
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "id": "dasfiorwio3",
+        "name": "ndiwhfurw",
         "agenda": [
             {
                 "point": "viaje",
