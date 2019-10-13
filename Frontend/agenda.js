@@ -3,7 +3,7 @@ class AgendaManager {
         "data": [
             {
                 "id": "dasfiorwio",
-                "name": "ndiwhfurw",
+                "name": "ndiwhfurwb bbbbbbbbbbbbbbbbb",
                 "agenda": [
                     {
                         "point": "viaje",
