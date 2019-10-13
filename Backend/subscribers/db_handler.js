@@ -1,4 +1,4 @@
-var AGENDA = require('../models/agenda');
+var Agenda = require('../models/agenda');
 var DB = require('../services/db');
 
 /**
@@ -9,7 +9,7 @@ var DB = require('../services/db');
  */
 async function InsertAgenda(req, res) {
     // * Create a new agenda object.
-    let agenda = new AGENDA(req.body.id, req.body.name, req.body.agenda);
+    let agenda = new Agenda(req.body.id, req.body.name, req.body.agenda);
     // * Call function to insert a new element into database.
     let status = await DB.InsertAgenda(agenda);
     // * Validate if was inserted.
@@ -32,7 +32,20 @@ async function GetAgendas(req, res) {
     res.status(200).send(dataReceived);
 }
 
+/**
+ * @function GetAgenda this async function returns all votes from the database.
+ * @param {*} req 
+ * @param {*} res 
+ * @returns a json file with each vote inside of db.
+ */
+async function GetVotes(req, res) {
+    // * Call  function get all elements from database.
+    let dataReceived = await DB.GetVotes();
+    res.status(200).send(dataReceived);
+}
+
 module.exports = {
     GetAgendas,
-    InsertAgenda
+    InsertAgenda,
+    GetVotes
 }
