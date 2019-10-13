@@ -1,5 +1,6 @@
 import { LocalData } from '../modules/local-data.js';
 import { Ajax } from '../modules/ajax.js';
+const baseUrl = "https://api-voting-system.herokuapp.com";
 class AgendaManager {
     prueba = {
         "data": [
@@ -101,7 +102,7 @@ class AgendaManager {
     }
     localDataStorsge = [];
     constructor() {
-        this.xhrRequest = new Ajax("../modules/prueba.json");
+        this.xhrRequest = new Ajax(baseUrl);
         this.getAgendaList();
     }
 

@@ -3,37 +3,42 @@ class Ajax {
         this.url = url;
     }
 
-    get(callback) {
-        var xhr = new XMLHttpRequest
-        xhr.onreadystatechange = function () {
-            if (xhr.status == 200 && xhr.readyState == 4) {
-                callback(xhr.responseText);
+    getAgendas(callBack) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                callBack(this.responseText);
             }
-        }
-        xhr.open("GET", this.url);
-        xhr.send();
+        };
+        // * True means asynchronous call.
+        xhttp.open("GET", `${this.url}/agendas`, true);
+        xhttp.send();
     }
-
-    getWithQuery(query, callback) {
-        var xhr = new XMLHttpRequest
-        xhr.onreadystatechange = function () {
-            if (xhr.status == 200 && xhr.readyState == 4) {
-                callback(xhr.responseText);
+    
+    getVotes(callBack) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                callBack(this.responseText);
             }
-        }
-        xhr.open("GET", this.url);
-        xhr.send(query);
+        };
+        // * True means asynchronous call.
+        xhttp.open("GET", `${this.url}/votes`, true);
+        xhttp.send();
     }
-
-    post(body, callback) {
-        var xhr = new XMLHttpRequest
-        xhr.onreadystatechange = function () {
-            if (xhr.status == 200 && xhr.readyState == 4) {
-                callback(xhr.responseText);
+    
+    insertAgena(agenda, callBack) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", `${this.url}/newagenda`, true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var json = JSON.parse(this.responseText);
+                callBack(json);
             }
         }
-        xhr.open("POST", this.url);
-        xhr.send(body);
+        var data = JSON.stringify(agenda);
+        xhr.send(data);
     }
 }
 export { Ajax };

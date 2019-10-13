@@ -24,11 +24,11 @@ export function GetVotes(callBack) {
 
 export function InsertAgena(agenda, callBack) {
     var xhttp = new XMLHttpRequest();
-    xhr.open("POST", "https://api-voting-system.herokuapp.com/newagenda", true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var json = JSON.parse(xhr.responseText);
+    xhttp.open("POST", "https://api-voting-system.herokuapp.com/newagenda", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var json = JSON.parse(this.responseText);
             callBack(json);
         }
     }
