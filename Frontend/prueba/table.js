@@ -1,5 +1,5 @@
 class tableVotesSelect {
-    createTableFromJSON(list, itemAgendaEdit) {
+    createTableFromJSON(list, pointAgendaEdit) {
 
         // EXTRACT VALUE FOR HTML HEADER. 
         var col = [];
@@ -40,7 +40,7 @@ class tableVotesSelect {
                     let buttonAgreement = document.createElement("button");
                     buttonAgreement.appendChild(document.createTextNode('Ψ'));
                     buttonAgreement.addEventListener("click", function() {
-                        addVotation(jsonList, itemAgendaEdit)
+                        addVotation(jsonList, pointAgendaEdit)
                     });
                     tabCell.appendChild(buttonAgreement)
 

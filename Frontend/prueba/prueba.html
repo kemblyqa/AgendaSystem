@@ -5,29 +5,31 @@
     <meta charset="utf-8">
     <title>CKEditor</title>
     <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>
-    <script src="main.js" defer></script>
     <script src="creation.js"></script>
     <script src="element.js"></script>
     <script src="table.js"></script>
     <script src="delete.js"></script>
+    <script src="newAgenda.js"></script>
+    <script src="getAgenda.js"></script>
+    <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
-        <button class="principal">Atras</button>
-        <button class="principal" onclick="data()">Guardar</button>
+        <button class="principal" onclick="generateInfo()">Atras</button>
+        <button class="principal" onclick="saveData()">Guardar</button>
     </header>
 
     <div id="elements">
-        <div class="group">
+        <!-- <div class="group">
             <div class="edit">
                 <textarea class="text" id="introduction">
                     Titulo.. 
                 </textarea>
             </div>
-            <button onclick="createItemAgenda()">Agregar Punto</button>
-        </div>
+            <button onclick="createpointAgenda()">Agregar Punto</button>
+        </div> -->
 
     </div>
 

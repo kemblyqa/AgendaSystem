@@ -1,38 +1,38 @@
 class removal {
     /**
-     * @function deleteItemAgenda for delete a item point from agenda
+     * @function deletepointAgenda for delete a point point from agenda
      * @param {html} element 
      */
-    deleteItemAgenda(element) {
+    deletepointAgenda(element) {
         this.deleteChild(element);
-        let filtered = this.filterItems(listElementsCreated, element.id, 1);
+        let filtered = this.filterpoints(listElementsCreated, element.id, 1);
         listElementsCreated = filtered;
     }
 
     /**
-     * @function deleteRecitalsAgenda for delete a recital from item of agenda
+     * @function deleteRecitalsAgenda for delete a recital from point of agenda
      * @param {html} element 
      */
     deleteRecitalsAgenda(element) {
         this.deleteChild(element);
-        let filtered = this.filterItems(listElementsCreated, element.id, 2);
+        let filtered = this.filterpoints(listElementsCreated, element.id, 2);
         listElementsCreated = filtered;
     }
 
     /**
-     * @function deleteAgreetmentAgenda for delete a agreetment from item of agenda
+     * @function deleteAgreementAgenda for delete a Agreement from point of agenda
      * @param {html} element 
      */
-    deleteAgreetmentAgenda(element) {
+    deleteAgreementAgenda(element) {
         this.deleteChild(element);
-        let filtered = this.filterItems(listElementsCreated, element.id, 3);
+        let filtered = this.filterpoints(listElementsCreated, element.id, 3);
         listElementsCreated = filtered;
     }
 
     /**
-     * @function deleteVoteAgenda for delete a vote from item of agenda
+     * @function deleteVoteAgenda for delete a vote from point of agenda
      * @param {html} element 
-     * @param {html} identifier of agreetment
+     * @param {html} identifier of Agreement
      */
     deleteVoteAgenda(element, identifier) {
         let padre = element.parentNode;
@@ -41,9 +41,9 @@ class removal {
         let flag = false;
         let sizeList = listElementsCreated.length;
         while (sizeList > 0 && !flag) {
-            listElementsCreated[sizeList - 1].agreetments.forEach(agreetment => {
-                if (agreetment.id === identifier.id) {
-                    agreetment.votationID = 0
+            listElementsCreated[sizeList - 1].agreements.forEach(Agreement => {
+                if (Agreement.id === identifier.id) {
+                    Agreement.vote = 0
                     flag = true;
                 }
             });
@@ -62,27 +62,27 @@ class removal {
     }
 
     /**
-     * @function filterItems filter list of elements for get a new list without element searched
+     * @function filterpoints filter list of elements for get a new list without element searched
      * @param {array} arr 
      * @param {string} query 
      * @param {number} type 
      */
-    filterItems(arr, query, type) {
+    filterpoints(arr, query, type) {
         let result;
         return arr.filter(function(el) {
             switch (type) {
                 case 1:
-                    return el.item !== query;
+                    return el.point !== query;
                 case 2:
                     result = el.recitals.filter(function(el) {
                         return el !== query;
                     })
                     return el.recitals = result;
                 case 3:
-                    result = el.agreetments.filter(function(el) {
+                    result = el.agreements.filter(function(el) {
                         return el.id !== query;
                     })
-                    return el.agreetments = result;
+                    return el.agreements = result;
                 default:
                     break;
             }

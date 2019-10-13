@@ -3,7 +3,7 @@ class elementAgenda {
     /**
      * @function createElement create a element in the view
      * @param {string} name 
-     * @param {number} type type of element (recital, agreetment, item)
+     * @param {number} type type of element (recital, Agreement, point)
      */
     createElement(name, type) {
         let creation = new Creation();
@@ -12,55 +12,55 @@ class elementAgenda {
         let date = `${assign.getDate()}${assign.getSeconds()}${assign.getMilliseconds()}`;
         creation.createDivision();
         //Create the div with the elements inside
-        let itemAgendaGroup = document.createElement("div");
-        itemAgendaGroup.classList.add("group");
+        let pointAgendaGroup = document.createElement("div");
+        pointAgendaGroup.classList.add("group");
         //Create the div for the editor
-        let itemAgendaEdit = document.createElement("div");
-        itemAgendaEdit.classList.add("edit");
-        itemAgendaEdit.id = `editor${date}`;
+        let pointAgendaEdit = document.createElement("div");
+        pointAgendaEdit.classList.add("edit");
+        pointAgendaEdit.id = `editor${date}`;
         //Create the content of the editor
-        let itemAgendaInfo = document.createElement("p");
-        itemAgendaInfo.appendChild(document.createTextNode(name));
+        pointAgendaEdit.innerHTML = name;
+        //pointAgendaInfo.appendChild(document.createTextNode(name));
+
         //Insert elements in the group div
-        itemAgendaEdit.appendChild(itemAgendaInfo);
-        itemAgendaGroup.appendChild(itemAgendaEdit);
+        pointAgendaGroup.appendChild(pointAgendaEdit);
         if (type === 1) {
             //create button for recitals
-            let buttonRecitals = creation.createButtonRecitals(itemAgendaEdit);
-            itemAgendaGroup.appendChild(buttonRecitals);
+            let buttonRecitals = creation.createButtonRecitals(pointAgendaEdit);
+            pointAgendaGroup.appendChild(buttonRecitals);
             //Create button for agreement
-            let buttonAgreement = creation.createButtonAgreetment(itemAgendaEdit);
-            itemAgendaGroup.appendChild(buttonAgreement);
-            //Create buttton for delete item agenda
-            let buttonDeleteItemAgenda = creation.createButtonDeleteItem(itemAgendaEdit);
-            itemAgendaGroup.appendChild(buttonDeleteItemAgenda);
+            let buttonAgreement = creation.createButtonAgreement(pointAgendaEdit);
+            pointAgendaGroup.appendChild(buttonAgreement);
+            //Create buttton for delete point agenda
+            let buttonDeletepointAgenda = creation.createButtonDeletepoint(pointAgendaEdit);
+            pointAgendaGroup.appendChild(buttonDeletepointAgenda);
         }
         if (type === 2) {
             //Create buttton for delete recitals
-            let buttonDeleteRecitalAgenda = creation.createButtonDeleteRecital(itemAgendaEdit);
-            itemAgendaGroup.appendChild(buttonDeleteRecitalAgenda);
+            let buttonDeleteRecitalAgenda = creation.createButtonDeleteRecital(pointAgendaEdit);
+            pointAgendaGroup.appendChild(buttonDeleteRecitalAgenda);
         }
         if (type === 3) {
             //create button for votes
-            let buttonRecitals = creation.createButtonVote(itemAgendaEdit);
-            itemAgendaGroup.appendChild(buttonRecitals);
-            //Create buttton for delete agreetment
-            let buttonDeleteAgreetmentAgenda = creation.createButtonDeleteAgreetment(itemAgendaEdit);
-            itemAgendaGroup.appendChild(buttonDeleteAgreetmentAgenda);
+            let buttonRecitals = creation.createButtonVote(pointAgendaEdit);
+            pointAgendaGroup.appendChild(buttonRecitals);
+            //Create buttton for delete Agreement
+            let buttonDeleteAgreementAgenda = creation.createButtonDeleteAgreement(pointAgendaEdit);
+            pointAgendaGroup.appendChild(buttonDeleteAgreementAgenda);
         }
 
         //Append div groupo in view html
-        document.getElementById('elements').appendChild(itemAgendaGroup);
+        document.getElementById('elements').appendChild(pointAgendaGroup);
         CKEDITOR.inline(`editor${date}`, {});
-        itemAgendaEdit.setAttribute('contenteditable', true);
+        pointAgendaEdit.setAttribute('contenteditable', true);
         //insert element in list
-        return itemAgendaEdit
+        return pointAgendaEdit
     }
 
     /**
      * @function createVote create a vote part with a json of results
      * @param {json} jsonElement 
-     * @param {html} identifier id of agreetment
+     * @param {html} identifier id of Agreement
      */
     createVote(jsonElement, identifier) {
         let creation = new Creation();
@@ -69,22 +69,29 @@ class elementAgenda {
         let date = `${assign.getDate()}${assign.getSeconds()}${assign.getMilliseconds()}`;
         creation.createDivision();
         //Create the div with the elements inside
-        let itemAgendaGroup = document.createElement("div");
-        itemAgendaGroup.classList.add("group");
+        let pointAgendaGroup = document.createElement("div");
+        pointAgendaGroup.classList.add("group");
+
+        let title = document.createElement("div");
+        let style = document.createElement("h3");
+        style.appendChild(document.createTextNode(jsonElement.name));
+        title.appendChild(style);
+        title.classList.add("votes");
+        pointAgendaGroup.appendChild(title);
 
         let favor = creation.createVotes("A favor", jsonElement.favor)
-        itemAgendaGroup.appendChild(favor);
+        pointAgendaGroup.appendChild(favor);
 
         let nay = creation.createVotes("En contra", jsonElement.nay)
-        itemAgendaGroup.appendChild(nay);
+        pointAgendaGroup.appendChild(nay);
 
         let blank = creation.createVotes("En blanco", jsonElement.blank)
-        itemAgendaGroup.appendChild(blank);
+        pointAgendaGroup.appendChild(blank);
 
-        let buttonDeleteVote = creation.createButtonDeleteVote(itemAgendaGroup, identifier);
-        itemAgendaGroup.appendChild(buttonDeleteVote);
+        let buttonDeleteVote = creation.createButtonDeleteVote(pointAgendaGroup, identifier);
+        pointAgendaGroup.appendChild(buttonDeleteVote);
 
         //Append div groupo in view html
-        document.getElementById('elements').appendChild(itemAgendaGroup);
+        document.getElementById('elements').appendChild(pointAgendaGroup);
     }
 }
