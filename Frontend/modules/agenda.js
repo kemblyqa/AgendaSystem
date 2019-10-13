@@ -103,8 +103,8 @@ class AgendaManager {
      }
 
     getAgendaList() {
-        this.localData = new LocalData(this.prueba["data"]);
-        this.populateList(this.localData.remoteData);
+        this.localDataStorsge = new LocalData(this.prueba["data"]);
+        this.populateList(this.localDataStorsge.remoteData);
     }
 
     populateList(agendaList) {
