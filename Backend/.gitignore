@@ -1,0 +1,2 @@
+# Ignore nodejs modules directory to do lighter this project.
+/node_modules/
