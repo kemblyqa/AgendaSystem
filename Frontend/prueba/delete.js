@@ -32,11 +32,23 @@ class removal {
     /**
      * @function deleteVoteAgenda for delete a vote from item of agenda
      * @param {html} element 
+     * @param {html} identifier of agreetment
      */
-    deleteVoteAgenda(element) {
+    deleteVoteAgenda(element, identifier) {
         let padre = element.parentNode;
         padre.removeChild(element);
-        //FALTA ELIMINARLO DEL JSON
+
+        let flag = false;
+        let sizeList = listElementsCreated.length;
+        while (sizeList > 0 && !flag) {
+            listElementsCreated[sizeList - 1].agreetments.forEach(agreetment => {
+                if (agreetment.id === identifier.id) {
+                    agreetment.votationID = 0
+                    flag = true;
+                }
+            });
+            sizeList = sizeList - 1;
+        }
     }
 
     /**

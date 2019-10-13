@@ -60,8 +60,9 @@ class elementAgenda {
     /**
      * @function createVote create a vote part with a json of results
      * @param {json} jsonElement 
+     * @param {html} identifier id of agreetment
      */
-    createVote(jsonElement) {
+    createVote(jsonElement, identifier) {
         let creation = new Creation();
         //Create the id for the editor
         let assign = new Date();
@@ -80,7 +81,7 @@ class elementAgenda {
         let blank = creation.createVotes("En blanco", jsonElement.blank)
         itemAgendaGroup.appendChild(blank);
 
-        let buttonDeleteVote = creation.createButtonDeleteVote(itemAgendaGroup);
+        let buttonDeleteVote = creation.createButtonDeleteVote(itemAgendaGroup, identifier);
         itemAgendaGroup.appendChild(buttonDeleteVote);
 
         //Append div groupo in view html

@@ -1,8 +1,8 @@
 var listElementsCreated = [];
 var listVotation = [
-    { "id": 1, "favor": 5, "nay": 1, "blank": 5 },
-    { "id": 2, "favor": 4, "nay": 3, "blank": 3 },
-    { "id": 3, "favor": 2, "nay": 7, "blank": 1 },
+    { "name": "prueba1", "id": 1, "favor": 5, "nay": 1, "blank": 5 },
+    { "name": "prueba2", "id": 2, "favor": 4, "nay": 3, "blank": 3 },
+    { "name": "prueba3", "id": 3, "favor": 2, "nay": 7, "blank": 1 },
 ]
 
 function prueba() {
@@ -40,23 +40,27 @@ function addAgreetment(identifier) {
 /**
  * @function addVotation create a votation element in html
  * @param {html} identifier of agreetment 
+ * @param {json} json element selected of the list of votes
  */
-function addVotation(identifier) {
+function addVotation(json, identifier) {
     //FALTA LO DE PONER LA VOTACION DE ACUERDO A LO SELECCIONADO
+    console.log(json);
     let agenda = new elementAgenda();
-    agenda.createVote(listVotation[0]);
+    agenda.createVote(json, identifier);
 
     let flag = false;
     let sizeList = listElementsCreated.length;
     while (sizeList > 0 && !flag) {
         listElementsCreated[sizeList - 1].agreetments.forEach(agreetment => {
             if (agreetment.id === identifier.id) {
-                agreetment.votationID = listVotation[0].id
+                agreetment.votationID = json.id
                 flag = true;
             }
         });
         sizeList = sizeList - 1;
     }
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
 }
 
 function data() {
@@ -66,24 +70,15 @@ function data() {
 function modal() {
     // Get the modal
     var modal = document.getElementById("myModal");
-
     // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
-
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";

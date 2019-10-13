@@ -44,7 +44,10 @@ class Creation {
         let buttonVoteItemAgenda = document.createElement("button");
         buttonVoteItemAgenda.appendChild(document.createTextNode('Agregar Votación'));
         buttonVoteItemAgenda.addEventListener("click", function() {
-            addVotation(itemAgendaEdit);
+            let table = new tableVotesSelect();
+            table.createTableFromJSON(listVotation, itemAgendaEdit)
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
         });
         return buttonVoteItemAgenda
     }
@@ -94,13 +97,14 @@ class Creation {
     /**
      * @function createButtonDeleteVote create a button for delete vote with click listener
      * @param {html} itemAgendaGroup 
+     * @param {html} identifier id of agreetment
      */
-    createButtonDeleteVote(itemAgendaGroup) {
+    createButtonDeleteVote(itemAgendaGroup, identifier) {
         let buttonDeleteRecitalAgenda = document.createElement("button");
         buttonDeleteRecitalAgenda.appendChild(document.createTextNode('Eliminar Votación'));
         let del = new removal()
         buttonDeleteRecitalAgenda.addEventListener("click", function() {
-            del.deleteVoteAgenda(itemAgendaGroup)
+            del.deleteVoteAgenda(itemAgendaGroup, identifier)
         });
         return buttonDeleteRecitalAgenda
     }
