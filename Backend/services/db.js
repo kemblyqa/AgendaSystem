@@ -30,7 +30,7 @@ async function InsertAgenda(agenda) {
     // * Open a new connection.
     let data = null;
     CLIENT.connect();
-    await client.query(`SELECT * FROM insert_agenda(${agenda.id, agenda.name, agenda.agenda})`, 50000)
+    await client.query(`SELECT * FROM insert_agenda(${agenda.getId(), agenda.getName(), agenda.getAgenda()})`, 50000)
         .then(res => {
             data = res.rows;
         })
@@ -39,8 +39,30 @@ async function InsertAgenda(agenda) {
         });
     return data;
 }
+/**
+ * @function GetVotes get from database all votes.
+ * @returns a list with all registers.
+ */
+async function GetVotes() {
+    let listVotes = [];
+    // * Open a new connection.
+    CLIENT.connect();
+
+    // * Make a query.
+    await client.query('SELECT * FROM get_all_votes()', 50000)
+        .then(res => {
+            var data = res.rows;
+            listVotes = data;
+            data.array.forEach(row => console.log(row));
+        })
+        .finally(() => {
+            CLIENT.end();
+        });
+    return listVotes;
+}
 
 module.exports = {
     InsertAgenda,
-    GetAgendas
+    GetAgendas,
+    GetVotes
 }
