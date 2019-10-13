@@ -1,4 +1,5 @@
 import { LocalData } from '../modules/local-data.js';
+import { Ajax } from '../modules/ajax.js';
 class AgendaManager {
     prueba = {
         "data": [
@@ -98,13 +99,18 @@ class AgendaManager {
             }
         ]
     }
+    localDataStorsge = [];
     constructor() {
+        this.xhrRequest = new Ajax("../modules/prueba.json");
         this.getAgendaList();
-     }
+    }
 
     getAgendaList() {
-        this.localDataStorsge = new LocalData(this.prueba["data"]);
-        this.populateList(this.localDataStorsge.remoteData);
+        // this.xhrRequest.get(function (data) {
+        //     console.log(data);
+        //     this.localDataStorsge = new LocalData(data);
+        //     // this.populateList(this.localDataStorsge.remoteData);
+        // });
     }
 
     populateList(agendaList) {
