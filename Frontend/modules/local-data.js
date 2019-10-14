@@ -1,8 +1,5 @@
 class LocalData {
-    constructor(remoteData) {
-        this.remoteData = remoteData;
-        this.updateLocalStorage(this.remoteData);
-    }
+    constructor() {}
 
     /**
      * @function updateStorage updates the items stored with the new values
@@ -11,9 +8,15 @@ class LocalData {
     updateLocalStorage(data) {
         for (var i = 0; i < data.length; i++) {
             if (!this.existStorageItem(data[i].id) || !this.needUpdateStorageItem(data[i].id, data[i])) {
-                this.updateLocalStorageItem(data[i].id, data[i]);
+                this.setLocalStorageItem(data[i].id, data[i]);
             }
         }
+    }
+
+    setKeyAgenda(newKey){
+        var list = JSON.parse(this.getLocalStorageItem("idList"));
+        list.push(newKey);
+        this.setLocalStorageItem("idList", list);
     }
 
     /**
@@ -28,7 +31,7 @@ class LocalData {
      * @param {*} key the key to access to the localstorage value
      * @param {*} value the information about the agenda
      */
-    updateLocalStorageItem(key, value) {
+    setLocalStorageItem(key, value) {
         localStorage.setItem(key, JSON.stringify(value));
     }
 

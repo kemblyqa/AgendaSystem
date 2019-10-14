@@ -4,16 +4,31 @@ const baseUrl = "https://api-voting-system.herokuapp.com";
 class AgendaManager {
     constructor() {
         this.xhrRequest = new Ajax(baseUrl);
-        this.getAgendaList();
+        this.localDataStorage = new LocalData();
+        this.agendas = [];
+        //this.initAgendaList();
+    }
+
+    init(){
+        var idList = JSON.parse(this.localDataStorage.getLocalStorageItem('idList'));
+        if (!idList){
+            this.initAgendaServerList();
+        } else {
+            for(var i = 0; i < idList.length; i++){
+                this.agendas.push(this.localDataStorage.getLocalStorageItem(idList[i]));
+            }
+        }
+        this.populateList(idList);
     }
 
     /**
      * @function getAgendaList retrieves the agenda from server
      */
-    getAgendaList() {
+    initAgendaServerList() {
         this.xhrRequest.getAgendas((data) => {
-            this.localData = new LocalData(data);
-            this.populateList(this.localData.remoteData);
+            for(var i = 0; i < data.length; i++){
+                this.agendas.push(data[i]);
+            }
         })
     }
 
