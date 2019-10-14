@@ -40,7 +40,8 @@ class tableVotesSelect {
                     let buttonAgreement = document.createElement("button");
                     buttonAgreement.appendChild(document.createTextNode('Ψ'));
                     buttonAgreement.addEventListener("click", function() {
-                        addVotation(jsonList, pointAgendaEdit)
+                        let newElement = new newAgenda();
+                        newElement.addVotation(jsonList, pointAgendaEdit)
                     });
                     tabCell.appendChild(buttonAgreement)
 

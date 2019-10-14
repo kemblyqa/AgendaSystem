@@ -18,7 +18,8 @@ class Creation {
         let buttonRecitals = document.createElement("button");
         buttonRecitals.appendChild(document.createTextNode('Agregar Punto'));
         buttonRecitals.addEventListener("click", function() {
-            createpointAgenda()
+            let newElement = new newAgenda();
+            newElement.createpointAgenda()
         });
         return buttonRecitals
     }
@@ -31,7 +32,8 @@ class Creation {
         let buttonRecitals = document.createElement("button");
         buttonRecitals.appendChild(document.createTextNode('Agregar Considerando'));
         buttonRecitals.addEventListener("click", function() {
-            addRecitals(pointAgendaEdit)
+            let newElement = new newAgenda();
+            newElement.addRecitals(pointAgendaEdit)
         });
         return buttonRecitals
     }
@@ -44,7 +46,8 @@ class Creation {
         let buttonAgreement = document.createElement("button");
         buttonAgreement.appendChild(document.createTextNode('Agregar Acuerdo'));
         buttonAgreement.addEventListener("click", function() {
-            addAgreement(pointAgendaEdit)
+            let newElement = new newAgenda();
+            newElement.addAgreement(pointAgendaEdit)
         });
         return buttonAgreement
     }
