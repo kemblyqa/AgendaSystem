@@ -1,14 +1,14 @@
 var { pool } = require('../services/db');
 
 /**
- * @function InsertAgenda this async function call the service to insert a new agenda into the database.
+ * @function InsertMinute async function call the service to insert a new minute into the database.
  * @param {*} req 
  * @param {*} res
  * @returns {true, false} depending if the register was inserted or not.
  */
-function InsertAgenda(req, res) {
-    var { id, name, agenda } = req.body;
-    pool.query('SELECT * FROM insert_agenda($1, $2, $3);', [id, name, JSON.stringify(agenda)], err => {
+function InsertMinute(req, res) {
+    var { id, name, generals, agenda } = req.body;
+    pool.query('SELECT * FROM insert_minute($1, $2, $3, 4$);', [id, name, generals, JSON.stringify(agenda)], err => {
         if (err) {
             console.log(err);
         }
@@ -17,14 +17,14 @@ function InsertAgenda(req, res) {
 }
 
 /**
- * @function GetAgenda this function returns all agendas from the database.
+ * @function GetMinutes this function returns all agendas from the database.
  * @param {*} req 
  * @param {*} res 
  * @returns a json file with each agenda inside of db.
  */
-function GetAgendas(req, res) {
+function GetMinutes(req, res) {
     // * Call  function get all elements from database.
-    pool.query('SELECT * FROM get_all_agendas()', (err, results) => {
+    pool.query('SELECT * FROM get_all_minutes()', (err, results) => {
         if (err) {
             console.log(err);
         }
@@ -36,7 +36,7 @@ function GetAgendas(req, res) {
 }
 
 /**
- * @function GetAgenda this async function returns all votes from the database.
+ * @function GetVotes this async function returns all votes from the database.
  * @param {*} req 
  * @param {*} res 
  * @returns a json file with each vote inside of db.
@@ -54,7 +54,7 @@ function GetVotes(req, res) {
 }
 
 module.exports = {
-    GetAgendas,
-    InsertAgenda,
+    GetMinutes,
+    InsertMinute,
     GetVotes
 }
