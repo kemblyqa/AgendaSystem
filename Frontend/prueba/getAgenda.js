@@ -1,15 +1,26 @@
 class getAgenda {
+
+    generateTitle(title) {
+        let creation = new elementMinute();
+        let pointAgendaEdit = creation.createTitle(title, false);
+        listElementsCreated = { "title": pointAgendaEdit.id, "general": 0, "agenda": [] };
+    }
+
+    generateGeneralAspects(general) {
+        let creation = new elementMinute();
+        let pointAgendaEdit = creation.createGeneralAspects(general, false);
+        listElementsCreated.general = pointAgendaEdit.id;
+    }
+
     /**
      * @function generateAgenda principal function for generate agenda from previous data
      * @param {json} json data for generate
      */
     generateAgenda(json) {
-        let element = new elementAgenda();
-        let creation = new Creation();
-        creation.createTitle(json.name);
-        json.agenda.forEach(pointAgenda => {
-            let pointAgendaEdit = element.createElement(pointAgenda.point, 1)
-            listElementsCreated.push({ "point": pointAgendaEdit.id, "recitals": [], "agreements": [] })
+        let agenda = new elementMinute();
+        json.forEach(pointAgenda => {
+            let pointAgendaEdit = agenda.createElementAgenda(pointAgenda.point, 1, false)
+            listElementsCreated.agenda.push({ "point": pointAgendaEdit.id, "recitals": [], "agreements": [] })
             if (pointAgenda.recitals) {
                 this.generateRecitals(pointAgenda.recitals, pointAgendaEdit);
             }
@@ -25,10 +36,11 @@ class getAgenda {
      * @param {html} pointAgenda used for insert in list
      */
     generateRecitals(array, pointAgenda) {
-        let agenda = new elementAgenda();
+        let agenda = new elementMinute();
         array.forEach(recitalElement => {
-            let pointRecitals = agenda.createElement(recitalElement, 2)
-            listElementsCreated.forEach(element => {
+
+            let pointRecitals = agenda.createElementAgenda(recitalElement, 2, false)
+            listElementsCreated.agenda.forEach(element => {
                 if (element["point"] === pointAgenda.id) {
                     element["recitals"].push(pointRecitals.id)
                 }
@@ -43,15 +55,13 @@ class getAgenda {
      * @param {html} pointAgenda used for insert in list
      */
     generateAgreements(array, pointAgenda) {
-        let agenda = new elementAgenda();
-        array.forEach(recitalElement => {
-            console.log("inicio")
-            let pointAgreement = agenda.createElement(recitalElement.agreement, 3)
-            console.log("fin")
-            listElementsCreated.forEach(element => {
+        let agenda = new elementMinute();
+        array.forEach(agreementElement => {
+            let pointAgreement = agenda.createElementAgenda(agreementElement.agreement, 3, false)
+            listElementsCreated.agenda.forEach(element => {
                 if (element.point === pointAgenda.id) {
-                    element.agreements.push({ "id": pointAgreement.id, "vote": recitalElement.vote })
-                    this.generateVotes(recitalElement.vote, pointAgreement);
+                    element.agreements.push({ "agreement": pointAgreement.id, "vote": agreementElement.vote })
+                    this.generateVotes(agreementElement.vote, pointAgreement);
                 }
             });
         });
@@ -60,14 +70,14 @@ class getAgenda {
 
     /**
      * @function generateVotes function that generate votes
-     * @param {array} array list recitals in json
-     * @param {html} pointAgenda used for insert in list
+     * @param {number} idVote list recitals in json
+     * @param {html} identifierAgreetment used for insert in list
      */
     generateVotes(idVote, identifierAgreetment) {
-        let agenda = new elementAgenda();
+        let agenda = new elementMinute();
         listVotation.forEach(voteID => {
             if (voteID.id === idVote) {
-                agenda.createVote(voteID, identifierAgreetment);
+                agenda.createVote(voteID, identifierAgreetment, false);
             }
         });
 

@@ -3,8 +3,15 @@ class newAgenda {
      * @function titleConvert convert id introduction in ckeditor
      */
     createHtmlTitle() {
-        let creation = new Creation();
-        creation.createTitle('<h1>Titulo..</h1>');
+        let creation = new elementMinute();
+        let pointAgendaEdit = creation.createTitle('<h1>Titulo..</h1>');
+        listElementsCreated = { "title": pointAgendaEdit.id, "general": 0, "agenda": [] };
+    }
+
+    createGeneralAspects() {
+        let creation = new elementMinute();
+        let pointAgendaEdit = creation.createGeneralAspects('<h2>Aspectos Generales..</h2>', true);
+        listElementsCreated.general = pointAgendaEdit.id;
     }
 
     /**
@@ -12,9 +19,9 @@ class newAgenda {
      * @param {html} identifier 
      */
     createpointAgenda() {
-        let element = new elementAgenda();
-        let pointAgendaEdit = element.createElement('<p><em>Punto Agenda.</em></p>', 1)
-        listElementsCreated.push({ "point": pointAgendaEdit.id, "recitals": [], "agreements": [] })
+        let agenda = new elementMinute();
+        let pointAgendaEdit = agenda.createElementAgenda('<p><em>Punto Agenda.</em></p>', 1, true)
+        listElementsCreated.agenda.push({ "point": pointAgendaEdit.id, "recitals": [], "agreements": [] })
     }
 
     /**
@@ -22,9 +29,9 @@ class newAgenda {
      * @param {html} identifier 
      */
     addRecitals(identifier) {
-        let agenda = new elementAgenda();
-        let pointRecitals = agenda.createElement('<p><strong>Considerando.</strong></p>', 2)
-        listElementsCreated.forEach(element => {
+        let agenda = new elementMinute();
+        let pointRecitals = agenda.createElementAgenda('<p><strong>Considerando.</strong></p>', 2, true)
+        listElementsCreated.agenda.forEach(element => {
             if (element["point"] === identifier.id) {
                 element["recitals"].push(pointRecitals.id)
             }
@@ -36,11 +43,11 @@ class newAgenda {
      * @param {html} identifier 
      */
     addAgreement(identifier) {
-        let agenda = new elementAgenda();
-        let pointAgreement = agenda.createElement('<ul><li>Acuerdo.</li></ul>', 3)
-        listElementsCreated.forEach(element => {
+        let agenda = new elementMinute();
+        let pointAgreement = agenda.createElementAgenda('<ul><li>Acuerdo.</li></ul>', 3, true)
+        listElementsCreated.agenda.forEach(element => {
             if (element["point"] === identifier.id) {
-                element["agreements"].push({ "id": pointAgreement.id, "vote": 0 })
+                element["agreements"].push({ "agreement": pointAgreement.id, "vote": 0 })
             }
         });
     }
@@ -51,14 +58,13 @@ class newAgenda {
      * @param {json} json element selected of the list of votes
      */
     addVotation(json, identifier) {
-        let agenda = new elementAgenda();
-        agenda.createVote(json, identifier);
-
+        let agenda = new elementMinute();
+        agenda.createVote(json, identifier, true);
         let flag = false;
-        let sizeList = listElementsCreated.length;
+        let sizeList = listElementsCreated.agenda.length;
         while (sizeList > 0 && !flag) {
-            listElementsCreated[sizeList - 1].agreements.forEach(Agreement => {
-                if (Agreement.id === identifier.id) {
+            listElementsCreated.agenda[sizeList - 1].agreements.forEach(Agreement => {
+                if (Agreement.agreement === identifier.id) {
                     Agreement.vote = json.id
                     flag = true;
                 }

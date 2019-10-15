@@ -12,11 +12,11 @@ class Creation {
 
     /**
      * @function createButtonPoints create a button for create points with click listener
-     * @param {html} pointAgendaEdit 
      */
-    createButtonPoints(pointAgendaEdit) {
+    createButtonPoints() {
         let buttonRecitals = document.createElement("button");
         buttonRecitals.appendChild(document.createTextNode('Agregar Punto'));
+        buttonRecitals.id = "btnPoint"
         buttonRecitals.addEventListener("click", function() {
             let newElement = new newAgenda();
             newElement.createpointAgenda()
@@ -126,13 +126,19 @@ class Creation {
     }
 
     /**
-     * @function createVotes create and style each result of votes
+     * @function createVotesSegment create and style each result of votes
      * @param {string} name 
      * @param {number} cant 
+     * @param {boolean} editable
      */
-    createVotes(name, cant) {
+    createVotesSegment(name, cant, editable) {
         let pointVote = document.createElement("div");
-        pointVote.classList.add("votes");
+        if (editable) {
+            pointVote.classList.add("voteEditable");
+        } else {
+            pointVote.classList.add("voteView");
+        }
+
 
         let pointh3 = document.createElement("h3");
         pointh3.appendChild(document.createTextNode(name));
@@ -146,28 +152,5 @@ class Creation {
         return pointVote;
     }
 
-    createTitle(name) {
-        let assign = new Date();
-        let date = `${assign.getDate()}${assign.getSeconds()}${assign.getMilliseconds()}`;
 
-        let pointAgendaGroup = document.createElement("div");
-        pointAgendaGroup.classList.add("group");
-        //Create the div for the editor
-        var pointAgendaEdit = document.createElement("div");
-        pointAgendaEdit.classList.add("edit");
-        pointAgendaEdit.id = `introduction${date}`;
-
-        pointAgendaEdit.innerHTML = name;
-
-        pointAgendaGroup.appendChild(pointAgendaEdit);
-
-        let buttonRecitals = this.createButtonPoints(pointAgendaEdit);
-        pointAgendaGroup.appendChild(buttonRecitals);
-
-        document.getElementById('elements').appendChild(pointAgendaGroup);
-        CKEDITOR.inline(`introduction${date}`, {});
-        pointAgendaEdit.setAttribute('contenteditable', true);
-
-        return pointAgendaGroup;
-    }
 }

@@ -16,6 +16,10 @@ button {
     height: 33.3%;
 }
 
+button[id*="btnPoint"] {
+    height: 100%;
+}
+
 header {
     display: inline-block;
     left: 0;
@@ -34,11 +38,33 @@ header {
     margin-left: 1%;
 }
 
+.edit[id*="editElement100"] {
+    width: 98%;
+}
+
+.edit[id*="agendaSegmentEdit"] {
+    overflow: inherit;
+    font-size: 25px;
+}
+
 .group {
     width: 100%;
     background-color: cornsilk;
     height: 12%;
     text-align: center;
+}
+
+.group[id*="generalGroup"] {
+    height: 20%;
+}
+
+.group[id*="titleGroup"] {
+    height: 10%;
+}
+
+.group[id*="agendaSegmentGroup"] {
+    height: 4%;
+    background-color: lightpink;
 }
 
 .principal {
@@ -57,8 +83,14 @@ header {
     width: 100%;
 }
 
-.votes {
+.voteEditable {
     width: 20.2%;
+    height: 100%;
+    float: left;
+}
+
+.voteView {
+    width: 25%;
     height: 100%;
     float: left;
 }
