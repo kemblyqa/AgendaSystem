@@ -15,7 +15,7 @@ body {
 .sidebar {
     margin: 0;
     padding: 0;
-    width: 200px;
+    width: 300px;
     background-color: #f1f1f1;
     position: fixed;
     height: 100%;
@@ -31,6 +31,10 @@ body {
     word-wrap: break-word;
 }
 
+.sidebar input {
+    display: block;
+}
+
 .sidebar a.active {
     background-color: rgb(95, 136, 134);
     color: white;
@@ -42,9 +46,9 @@ body {
 }
 
 div.content {
-    margin-left: 200px;
+    margin-left: 300px;
     padding: 1px 16px;
-    height: 600px;
+    height: 700px;
 }
 
 div.content .card {
@@ -54,11 +58,22 @@ div.content .card {
     border-radius: 5px;
     background-color: rgb(199, 196, 196);
     margin: 16px 2px;
-    height: 600px;
+    height: 700px;
 }
 
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+#myInput {
+    background-image: url('./assets/searchicon_.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 250px;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
 }
 
 @media screen and (max-width: 700px) {
