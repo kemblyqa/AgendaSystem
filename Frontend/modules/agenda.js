@@ -28,7 +28,7 @@ class AgendaManager {
     initAgendaServerList() {
         this.xhrRequest.getMinutes((data) => {
             for (var i = 0; i < data.length; i++) {
-                data[i].editable = false; //property to make item no editable  
+                data[i].saved = true; //property to make item no editable  
                 console.log(data[i])          
                 this.agendas.push(data[i]);
             }
