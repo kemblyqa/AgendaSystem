@@ -6,41 +6,42 @@ class AgendaManager {
         this.xhrRequest = new Ajax(baseUrl);
         this.localDataStorage = new LocalData();
         this.agendas = [];
-        //this.initAgendaList();
-        this.initAgendaServerList();
+        this.init();
     }
-
+    /**
+     * @function init Fill the agenda lista with the info from database and localstorage
+     */
     init() {
+        this.clearSessionList();
         var idList = JSON.parse(this.localDataStorage.getLocalStorageItem('idList'));
-        if (!idList) {
-            this.initAgendaServerList();
-        } else {
+        if (!idList === undefined || !idList === null) {//There's no agendas in localstorage
             for (var i = 0; i < idList.length; i++) {
                 this.agendas.push(this.localDataStorage.getLocalStorageItem(idList[i]));
             }
         }
-        this.populateList(idList);
+        this.initAgendaServerList();
     }
 
     /**
      * @function getAgendaList retrieves the agenda from server
      */
     initAgendaServerList() {
-        this.clearSessionList();
         this.xhrRequest.getMinutes((data) => {
-            console.log(data)
-            // for(var i = 0; i < data.length; i++){
-            //     this.agendas.push(data[i]);
-            // }
-            this.populateList(data);
+            for (var i = 0; i < data.length; i++) {
+                data[i].editable = false; //property to make item no editable  
+                console.log(data[i])          
+                this.agendas.push(data[i]);
+            }
+            this.populateList(this.agendas);
         })
     }
 
     /**
-     * @function populateList fill the list with agendas
-     * @param {*} agendaList the list with agendas from localstorage
+     * @function populateList fill the listview with agendas
+     * @param {*} agendaList the list with agendas from server and localstorage
      */
     populateList(agendaList) {
+        console.log(agendaList)
         var agendaItemsContainer = document.getElementById("agenda-list-manager");
         // Populate with agendas.
         for (var i = 0; i < agendaList.length; i++) {
@@ -56,20 +57,31 @@ class AgendaManager {
                 this.className += " active";
                 //llamar funcion para mostrar agenda
                 document.getElementById('container-id').style.display = '';
+                window.agenda.showAgendaPreview(agendaList[i]);
             });
             agendaItemsContainer.appendChild(newItem);
         }
     }
 
+    showAgendaPreview(agenda) {
+        //aqui va lo de mostrar la agenda
+        //si posee un editable: fase es porque viene de la DB
+    }
+    /**
+     * @function clearSessionList clear the session listview
+     */
     clearSessionList() {
         var agendaItemsContainer, sessionList, i;
         agendaItemsContainer = document.getElementById("agenda-list-manager");
-        sessionList = agendaItemsContainer.getElementsByTagName("a");        
+        sessionList = agendaItemsContainer.getElementsByTagName("a");
         for (i = 0; i < sessionList.length; i++) {
             agendaItemsContainer.removeChild(sessionList[i]);
         }
     }
 
+    /**
+     * @function searchFilter filter by session id from the listview
+     */
     searchFilter() {
         var input, filter, agendaItemsContainer, sessionList, i, txtValue;
         agendaItemsContainer = document.getElementById("agenda-list-manager");
@@ -78,11 +90,7 @@ class AgendaManager {
         sessionList = agendaItemsContainer.getElementsByTagName("a");
         for (i = 0; i < sessionList.length; i++) {
             txtValue = sessionList[i].id;
-            if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                sessionList[i].style.display = "";
-            } else {
-                sessionList[i].style.display = "none";
-            }
+            sessionList[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? "" : "none";
         }
     }
 }
