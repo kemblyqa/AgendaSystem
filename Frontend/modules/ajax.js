@@ -8,6 +8,10 @@ class Ajax {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 callBack(JSON.parse(this.responseText));
+            } else if (this.status == 500){
+                console.error("Error interno del servidor.");
+            } else if (this.status == 400){
+                console.error("Datos inválidos.");
             }
         };
         // * True means asynchronous call.
@@ -20,6 +24,10 @@ class Ajax {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 callBack(JSON.parse(this.responseText));
+            } else if (this.status == 500){
+                console.error("Error interno del servidor.");
+            } else if (this.status == 400){
+                console.error("Datos inválidos.");
             }
         };
         // * True means asynchronous call.
@@ -33,7 +41,12 @@ class Ajax {
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
+                console.info("Respuesta obtenida correctamente.")
                 callBack(JSON.parse(this.responseText));
+            } else if (this.status == 500){
+                console.error("Error interno del servidor.");
+            } else if (this.status == 400){
+                console.error("Datos inválidos.");
             }
         }
         var data = JSON.stringify(agenda);
