@@ -29,7 +29,6 @@ class AgendaManager {
         this.xhrRequest.getMinutes((data) => {
             for (var i = 0; i < data.length; i++) {
                 data[i].saved = true; //property to make item no editable  
-                console.log(data[i])          
                 this.agendas.push(data[i]);
             }
             this.populateList(this.agendas);
@@ -45,9 +44,10 @@ class AgendaManager {
         // Populate with agendas.
         for (var i = 0; i < agendaList.length; i++) {
             var newItem = document.createElement("a");
-            newItem.id = agendaList[i].id;
+            var agenda = agendaList[i];
+            newItem.id = agenda.id;
             newItem.name = "itemAgenda";
-            newItem.appendChild(document.createTextNode(`Sesión N° ${agendaList[i].id} \n Nombre: ${agendaList[i].title}`));
+            newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.id} \n Nombre: ${agenda.title}`));
             newItem.addEventListener("click", function () {
                 var current = document.getElementsByClassName("active");
                 if (current.length > 0) {
@@ -56,13 +56,14 @@ class AgendaManager {
                 this.className += " active";
                 //llamar funcion para mostrar agenda
                 document.getElementById('container-id').style.display = '';
-                window.agenda.showAgendaPreview(agendaList[i]);
+                window.agenda.showAgendaPreview(agenda);
             });
             agendaItemsContainer.appendChild(newItem);
         }
     }
 
     showAgendaPreview(agenda) {
+        console.log(agenda);
         //aqui va lo de mostrar la agenda
         //si posee un editable: fase es porque viene de la DB
     }
