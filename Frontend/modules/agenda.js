@@ -16,7 +16,7 @@ class AgendaManager {
         var idList = JSON.parse(this.localDataStorage.getLocalStorageItem('idList'));
         if (!idList === undefined || !idList === null) {//There's no agendas in localstorage
             for (var i = 0; i < idList.length; i++) {
-                this.agendas.push(this.localDataStorage.getLocalStorageItem(idList[i]));
+                this.agendas.push(JSON.parse(this.localDataStorage.getLocalStorageItem(idList[i])));
             }
         }
         this.initAgendaServerList();
@@ -41,7 +41,6 @@ class AgendaManager {
      * @param {*} agendaList the list with agendas from server and localstorage
      */
     populateList(agendaList) {
-        console.log(agendaList)
         var agendaItemsContainer = document.getElementById("agenda-list-manager");
         // Populate with agendas.
         for (var i = 0; i < agendaList.length; i++) {
