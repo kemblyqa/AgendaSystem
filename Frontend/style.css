@@ -65,7 +65,7 @@ div.content .card {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-#myInput {
+#searchFilterInput {
     background-image: url('./assets/searchicon_.png');
     background-position: 10px 10px;
     background-repeat: no-repeat;

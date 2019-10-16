@@ -73,11 +73,11 @@ class AgendaManager {
     searchFilter() {
         var input, filter, agendaItemsContainer, sessionList, i, txtValue;
         agendaItemsContainer = document.getElementById("agenda-list-manager");
-        input = document.getElementById("myInput");
+        input = document.getElementById("searchFilterInput");
         filter = input.value.toLowerCase();
         sessionList = agendaItemsContainer.getElementsByTagName("a");
         for (i = 0; i < sessionList.length; i++) {
-            txtValue = sessionList[i].textContent || sessionList[i].innerText;
+            txtValue = sessionList[i].id;
             if (txtValue.toLowerCase().indexOf(filter) > -1) {
                 sessionList[i].style.display = "";
             } else {
