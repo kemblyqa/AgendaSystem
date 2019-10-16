@@ -3,18 +3,18 @@ import { Ajax } from '../modules/ajax.js';
 const baseUrl = "https://api-voting-system.herokuapp.com";
 class AgendaManager {
     constructor() {
-        this.xhrRequest = new Ajax(baseUrl);
-        this.localDataStorage = new LocalData();
-        this.agendas = [];
-        this.init();
-    }
-    /**
-     * @function init Fill the agenda lista with the info from database and localstorage
-     */
+            this.xhrRequest = new Ajax(baseUrl);
+            this.localDataStorage = new LocalData();
+            this.agendas = [];
+            this.init();
+        }
+        /**
+         * @function init Fill the agenda list with the info from database and localstorage
+         */
     init() {
         this.clearSessionList();
         var idList = JSON.parse(this.localDataStorage.getLocalStorageItem('idList'));
-        if (!idList === undefined || !idList === null) {//There's no agendas in localstorage
+        if (!idList === undefined || !idList === null) { //There's no agendas in localstorage
             for (var i = 0; i < idList.length; i++) {
                 this.agendas.push(JSON.parse(this.localDataStorage.getLocalStorageItem(idList[i])));
             }
@@ -29,7 +29,6 @@ class AgendaManager {
         this.xhrRequest.getMinutes((data) => {
             for (var i = 0; i < data.length; i++) {
                 data[i].saved = true; //property to make item no editable  
-                console.log(data[i])          
                 this.agendas.push(data[i]);
             }
             this.populateList(this.agendas);
@@ -48,7 +47,7 @@ class AgendaManager {
             newItem.id = agendaList[i].id;
             newItem.name = "itemAgenda";
             newItem.appendChild(document.createTextNode(`Sesión N° ${agendaList[i].id} \n Nombre: ${agendaList[i].title}`));
-            newItem.addEventListener("click", function () {
+            newItem.addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
                 if (current.length > 0) {
                     current[0].className = current[0].className.replace(" active", "");
@@ -63,9 +62,11 @@ class AgendaManager {
     }
 
     showAgendaPreview(agenda) {
+        console.log(agenda);
         //aqui va lo de mostrar la agenda
         //si posee un editable: fase es porque viene de la DB
-    }
+    };
+
     /**
      * @function clearSessionList clear the session listview
      */
@@ -95,4 +96,3 @@ class AgendaManager {
 }
 
 export { AgendaManager };
-
