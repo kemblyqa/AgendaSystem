@@ -4,7 +4,7 @@ class newAgenda {
      */
     createHtmlTitle() {
         let creation = new elementMinute();
-        let pointAgendaEdit = creation.createTitle('<h1>Titulo..</h1>');
+        let pointAgendaEdit = creation.createTitle('<h1>Titulo..</h1>', true);
         listElementsCreated = { "title": pointAgendaEdit.id, "general": 0, "agenda": [] };
     }
 
@@ -33,6 +33,7 @@ class newAgenda {
         let pointRecitals = agenda.createElementAgenda('<p><strong>Considerando.</strong></p>', 2, true)
         listElementsCreated.agenda.forEach(element => {
             if (element["point"] === identifier.id) {
+                identifier.parentNode.lastChild.disabled = true;
                 element["recitals"].push(pointRecitals.id)
             }
         });
@@ -47,6 +48,7 @@ class newAgenda {
         let pointAgreement = agenda.createElementAgenda('<ul><li>Acuerdo.</li></ul>', 3, true)
         listElementsCreated.agenda.forEach(element => {
             if (element["point"] === identifier.id) {
+                identifier.parentNode.lastChild.disabled = true;
                 element["agreements"].push({ "agreement": pointAgreement.id, "vote": 0 })
             }
         });
@@ -65,6 +67,7 @@ class newAgenda {
         while (sizeList > 0 && !flag) {
             listElementsCreated.agenda[sizeList - 1].agreements.forEach(Agreement => {
                 if (Agreement.agreement === identifier.id) {
+                    identifier.parentNode.lastChild.disabled = true;
                     Agreement.vote = json.id
                     flag = true;
                 }

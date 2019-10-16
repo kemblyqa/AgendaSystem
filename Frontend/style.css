@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: lightseagreen;
+    font-family: "Lato", sans-serif;
+}
+
+.agenda-title {
+    padding: 10px 2px;
+    text-align: center;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    /* word-break: break-all; */
+    word-wrap: break-word;
+}
+
+.sidebar input {
+    display: block;
+}
+
+.sidebar a.active {
+    background-color: rgb(95, 136, 134);
+    color: white;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+div.content {
+    margin-left: 300px;
+    padding: 1px 16px;
+    height: 700px;
+}
+
+div.content .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 5px;
+    background-color: rgb(199, 196, 196);
+    margin: 16px 2px;
+    height: 700px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+#searchFilterInput {
+    background-image: url('./assets/searchicon_.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 250px;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {
+        float: left;
+    }
+    div.content {
+        margin-left: 0;
+    }
+}

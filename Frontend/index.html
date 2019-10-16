@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="controller.js"></script>
     <title>Agenda</title>
 </head>
 
 <body>
-
+    <div class="sidebar" id="agenda-list-manager">
+        <input type="text" id="searchFilterInput" onkeyup="agenda.searchFilter()" placeholder="Buscar acta por N° de sesión...">
+    </div>
+    <div style="display:none;" class="content" id="container-id">
+        <div class="card"></div>
+    </div>
 </body>
 
 </html>

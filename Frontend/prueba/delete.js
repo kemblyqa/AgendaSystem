@@ -5,8 +5,8 @@ class removal {
      */
     deletepointAgenda(element) {
         this.deleteChild(element);
-        let filtered = this.filterpoints(listElementsCreated, element.id, 1);
-        listElementsCreated = filtered;
+        let filtered = this.filterpoints(listElementsCreated.agenda, element.id, 1);
+        listElementsCreated.agenda = filtered;
     }
 
     /**
@@ -15,8 +15,9 @@ class removal {
      */
     deleteRecitalsAgenda(element) {
         this.deleteChild(element);
-        let filtered = this.filterpoints(listElementsCreated, element.id, 2);
-        listElementsCreated = filtered;
+        this.activateDelete(listElementsCreated.agenda, element.id, 1)
+        let filtered = this.filterpoints(listElementsCreated.agenda, element.id, 2);
+        listElementsCreated.agenda = filtered;
     }
 
     /**
@@ -25,8 +26,9 @@ class removal {
      */
     deleteAgreementAgenda(element) {
         this.deleteChild(element);
-        let filtered = this.filterpoints(listElementsCreated, element.id, 3);
-        listElementsCreated = filtered;
+        this.activateDelete(listElementsCreated.agenda, element.id, 2)
+        let filtered = this.filterpoints(listElementsCreated.agenda, element.id, 3);
+        listElementsCreated.agenda = filtered;
     }
 
     /**
@@ -35,13 +37,13 @@ class removal {
      * @param {html} identifier of Agreement
      */
     deleteVoteAgenda(element, identifier) {
+        identifier.parentNode.lastChild.disabled = false;
         let padre = element.parentNode;
         padre.removeChild(element);
-
         let flag = false;
-        let sizeList = listElementsCreated.length;
+        let sizeList = listElementsCreated.agenda.length;
         while (sizeList > 0 && !flag) {
-            listElementsCreated[sizeList - 1].agreements.forEach(Agreement => {
+            listElementsCreated.agenda[sizeList - 1].agreements.forEach(Agreement => {
                 if (Agreement.id === identifier.id) {
                     Agreement.vote = 0
                     flag = true;
@@ -49,6 +51,7 @@ class removal {
             });
             sizeList = sizeList - 1;
         }
+
     }
 
     /**
@@ -58,7 +61,9 @@ class removal {
     deleteChild(element) {
         let padre = element.parentNode.parentNode;
         let tarea = element.parentNode;
+        padre.removeChild(tarea.previousSibling);
         padre.removeChild(tarea);
+
     }
 
     /**
@@ -80,7 +85,7 @@ class removal {
                     return el.recitals = result;
                 case 3:
                     result = el.agreements.filter(function(el) {
-                        return el.id !== query;
+                        return el.agreement !== query;
                     })
                     return el.agreements = result;
                 default:
@@ -88,5 +93,51 @@ class removal {
             }
 
         })
+    }
+
+    /**
+     * @function activateDelete used for activate delete option in parent html
+     * @param {array} arr 
+     * @param {string} idElement 
+     * @param {number} type 
+     */
+    activateDelete(arr, idElement, type) {
+        let result = this.searchParent(arr, idElement, type);
+        if (result != null) {
+            result.parentNode.lastChild.disabled = false;
+        }
+        return;
+    }
+
+    /**
+     * @function searchParent search the parent html for disable button
+     * @param {array} arr 
+     * @param {string} idElement 
+     * @param {number} type 
+     */
+    searchParent(arr, idElement, type) {
+        let htmlParent = null;
+        switch (type) {
+            case 1: //recital
+                arr.forEach(jsonElement => {
+                    jsonElement.recitals.forEach(recitalID => {
+                        if (recitalID === idElement && jsonElement.recitals.length === 1 && jsonElement.agreements.length === 0) {
+                            htmlParent = document.getElementById(jsonElement.point);
+                        }
+                    });
+                });
+                return htmlParent;
+            case 2: //agreement
+                arr.forEach(jsonElement => {
+                    jsonElement.agreements.forEach(agreementJSON => {
+                        if (agreementJSON.agreement === idElement && jsonElement.recitals.length === 0 && jsonElement.agreements.length === 1) {
+                            htmlParent = document.getElementById(jsonElement.point);
+                        }
+                    });
+                });
+                return htmlParent;
+            default:
+                return htmlParent;
+        }
     }
 }
