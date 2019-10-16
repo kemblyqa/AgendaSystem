@@ -7,6 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <script type="module" src="controller.js"></script>
+    <!-- ROYLAND IMPORTS -->
+    <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>
+    <script src="./minute_view/creation.js"></script>
+    <script src="./minute_view/elementMinute.js"></script>
+    <script src="./minute_view/table.js"></script>
+    <script src="./minute_view/delete.js"></script>
+    <script src="./minute_view/newAgenda.js"></script>
+    <script src="./minute_view/getAgenda.js"></script>
+    <script src="./minute_view/main.js" defer></script>
     <title>Agenda</title>
 </head>
 
@@ -15,7 +24,20 @@
         <input type="text" id="searchFilterInput" onkeyup="agenda.searchFilter()" placeholder="Buscar acta por N° de sesión...">
     </div>
     <div style="display:none;" class="content" id="container-id">
-        <div class="card"></div>
+        <div id="elements">
+
+        </div>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="showData"></p>
+            </div>
+
+        </div>
     </div>
 </body>
 

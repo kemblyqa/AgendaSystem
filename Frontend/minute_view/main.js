@@ -87,13 +87,13 @@ function modal() {
     }
 }
 
-function generateInfo(editable) {
+function generateInfo(editable, minute) {
     let segment = new elementMinute();
     let agenda = new getAgenda();
-    agenda.generateTitle(test.title, editable);
-    agenda.generateGeneralAspects(test.general, editable);
+    agenda.generateTitle(minute.title, editable);
+    agenda.generateGeneralAspects(minute.general, editable);
     segment.createSegmentAgenda(editable);
-    agenda.generateAgenda(test.agenda, editable);
+    agenda.generateAgenda(minute.agenda, editable);
 
 }
 
