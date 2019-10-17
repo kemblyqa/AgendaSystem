@@ -15,11 +15,10 @@ body {
 .sidebar {
     margin: 0;
     padding: 0;
-    width: 300px;
-    background-color: #f1f1f1;
-    position: fixed;
+    width: 25%;
+    background-color: turquoise;
     height: 100%;
-    overflow: auto;
+    float: left;
 }
 
 .sidebar a {
@@ -46,19 +45,20 @@ body {
 }
 
 div.content {
-    margin-left: 300px;
-    padding: 1px 16px;
-    height: 700px;
+    width: 75%;
+    height: 99%;
+    float: left;
 }
 
 div.content .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    width: 100%;
+    width: 96%;
     border-radius: 5px;
-    background-color: rgb(199, 196, 196);
-    margin: 16px 2px;
-    height: 700px;
+    background-color: floralwhite;
+    height: 96%;
+    margin: 0 auto;
+    overflow-y: scroll;
+    padding-top: 5px;
 }
 
 .card:hover {
@@ -67,11 +67,11 @@ div.content .card {
 
 #searchFilterInput {
     background-image: url('./assets/searchicon_.png');
-    background-position: 10px 10px;
+    background-position: right;
     background-repeat: no-repeat;
-    width: 250px;
+    width: 99.5%;
+    height: 30px;
     font-size: 16px;
-    padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
 }
@@ -79,19 +79,29 @@ div.content .card {
 @media screen and (max-width: 700px) {
     .sidebar {
         width: 100%;
-        height: auto;
+        height: 25%;
         position: relative;
+        overflow-y: scroll;
     }
     .sidebar a {
         float: left;
     }
     div.content {
         margin-left: 0;
+        width: 100%;
+        height: 71%;
+    }
+    .addMinute {
+        height: 20%;
     }
 }
 
 
 /* ROYLAND STYLES */
+
+.elements {
+    margin: 50px;
+}
 
 html {
     height: 100%;
@@ -109,6 +119,28 @@ body {
 button {
     width: 18%;
     height: 33.3%;
+    box-shadow: inset 0px 1px 17px 4px #91b8b3;
+    background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    background-color: #768d87;
+    border-radius: 11px;
+    border: 1px solid #566963;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Times New Roman;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0px 0px 9px #2b665e;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #d8dddd 25%, #6c7c7c 100%);
+    background-color: #6c7c7c;
+}
+
+button:disabled {
+    color: sandybrown;
 }
 
 button[id*="btnPoint"] {
@@ -144,7 +176,7 @@ header {
 
 .group {
     width: 100%;
-    background-color: cornsilk;
+    background-color: lightgrey;
     height: 12%;
     text-align: center;
 }
@@ -265,4 +297,22 @@ td {
 
 th {
     font-weight: bold;
+}
+
+.addMinute {
+    width: 100%;
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    box-shadow: inset 0px 1px 17px 4px #91b8b3;
+    background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    background-color: #768d87;
+    border: 1px solid #566963;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Times New Roman;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0px 0px 9px #2b665e;
+    height: 4%;
 }

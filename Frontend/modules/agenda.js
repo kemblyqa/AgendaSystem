@@ -67,7 +67,9 @@ class AgendaManager {
      * @param {json} agenda 
      */
     showAgendaPreview(agenda) {
-        generateInfo(true, test);
+        document.getElementById("elements").innerHTML = "";
+        window.listElementsCreated = [];
+        window.minute.generateInfo(true, test); //&FALTA VERIFICAR SI ES DE LA BASE
     };
 
     /**
@@ -95,6 +97,23 @@ class AgendaManager {
             txtValue = sessionList[i].id;
             sessionList[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? "" : "none";
         }
+    }
+
+    createNewMinute() {
+        document.getElementById("elements").innerHTML = "";
+        window.listElementsCreated = [];
+        document.getElementById('container-id').style.display = '';
+        window.minute.createAgenda();
+    }
+
+    refreshMinute() {
+        document.getElementById("elements").innerHTML = "";
+        window.minute.generateInfo(true, window.minute.saveData());
+    }
+
+    saveFinal() { //&FALTA GUARDAR EN LA BASE 
+        let dato = window.minute.saveData()
+        location.reload();
     }
 }
 

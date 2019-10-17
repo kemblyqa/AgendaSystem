@@ -9,24 +9,25 @@
     <script type="module" src="controller.js"></script>
     <!-- ROYLAND IMPORTS -->
     <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>
-    <script src="./minute_view/creation.js"></script>
-    <script src="./minute_view/elementMinute.js"></script>
-    <script src="./minute_view/table.js"></script>
-    <script src="./minute_view/delete.js"></script>
-    <script src="./minute_view/newAgenda.js"></script>
-    <script src="./minute_view/getAgenda.js"></script>
-    <script src="./minute_view/main.js" defer></script>
+
     <title>Agenda</title>
 </head>
 
 <body>
     <div class="sidebar" id="agenda-list-manager">
-        <input type="text" id="searchFilterInput" onkeyup="agenda.searchFilter()" placeholder="Buscar acta por N° de sesión...">
+        <input class="addMinute" type="button" onclick="agenda.createNewMinute()" value="Crear Nueva Acta">
+        <input type="text" id="searchFilterInput" onkeyup="agenda.searchFilter()" placeholder="Buscar acta ">
     </div>
     <div style="display:none;" class="content" id="container-id">
-        <div id="elements">
+        <input class="addMinute" type="button" style="width: 50%; float: left;" value="Reacomodar" onclick="agenda.refreshMinute()">
+        <input class="addMinute" type="button" style="width: 50%;" value="Guardar Definitivo" onclick="agenda.saveFinal()">
+        <div class="card">
 
+            <div id="elements">
+
+            </div>
         </div>
+
 
         <!-- The Modal -->
         <div id="myModal" class="modal">

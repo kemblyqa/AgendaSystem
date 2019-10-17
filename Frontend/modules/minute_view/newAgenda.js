@@ -1,3 +1,5 @@
+import { elementMinute } from './elementMinute.js'
+
 class newAgenda {
     /**
      * @function titleConvert convert id introduction in ckeditor
@@ -78,3 +80,5 @@ class newAgenda {
         modal.style.display = "none";
     }
 }
+
+export { newAgenda };

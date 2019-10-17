@@ -1,3 +1,5 @@
+import { newAgenda } from './newAgenda.js'
+
 class tableVotesSelect {
     createTableFromJSON(list, pointAgendaEdit) {
 
@@ -58,3 +60,5 @@ class tableVotesSelect {
         divContainer.appendChild(table);
     }
 }
+
+export { tableVotesSelect };

@@ -1,3 +1,7 @@
+import { newAgenda } from './newAgenda.js'
+import { tableVotesSelect } from './table.js'
+import { removal } from './delete.js'
+
 class Creation {
 
     /**
@@ -154,3 +158,5 @@ class Creation {
 
 
 }
+
+export { Creation };

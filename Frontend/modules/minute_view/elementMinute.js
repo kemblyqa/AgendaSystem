@@ -1,3 +1,6 @@
+import { Creation } from './creation.js'
+
+
 class elementMinute {
 
     /**
@@ -116,7 +119,6 @@ class elementMinute {
         let create = new Creation();
         let assign = new Date();
         let date = `${assign.getDate()}${assign.getSeconds()}${assign.getMilliseconds()}${Math.floor(Math.random() * 100000)}`;
-
         let pointAgendaGroup = document.createElement("div");
         pointAgendaGroup.classList.add("group");
         pointAgendaGroup.id = "titleGroup"
@@ -129,7 +131,6 @@ class elementMinute {
         pointAgendaEdit.innerHTML = name;
 
         pointAgendaGroup.appendChild(pointAgendaEdit);
-
         document.getElementById('elements').appendChild(pointAgendaGroup);
         CKEDITOR.inline(`editElement100${date}`, {});
         pointAgendaEdit.setAttribute('contenteditable', editable);
@@ -187,3 +188,5 @@ class elementMinute {
         document.getElementById('elements').appendChild(elementGroup);
     }
 }
+
+export { elementMinute };

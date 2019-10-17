@@ -1,3 +1,6 @@
+import { elementMinute } from './elementMinute.js'
+
+
 class getAgenda {
 
     generateTitle(title, editable) {
@@ -42,6 +45,7 @@ class getAgenda {
             let pointRecitals = agenda.createElementAgenda(recitalElement, 2, editable)
             listElementsCreated.agenda.forEach(element => {
                 if (element["point"] === pointAgenda.id) {
+                    pointAgenda.parentNode.lastChild.disabled = true;
                     element["recitals"].push(pointRecitals.id)
                 }
             });
@@ -60,6 +64,7 @@ class getAgenda {
             let pointAgreement = agenda.createElementAgenda(agreementElement.agreement, 3, editable)
             listElementsCreated.agenda.forEach(element => {
                 if (element.point === pointAgenda.id) {
+                    pointAgenda.parentNode.lastChild.disabled = true;
                     element.agreements.push({ "agreement": pointAgreement.id, "vote": agreementElement.vote })
                     this.generateVotes(agreementElement.vote, pointAgreement, editable);
                 }
@@ -77,9 +82,12 @@ class getAgenda {
         let agenda = new elementMinute();
         listVotation.forEach(voteID => {
             if (voteID.id === idVote) {
+                identifierAgreetment.parentNode.lastChild.disabled = true;
                 agenda.createVote(voteID, identifierAgreetment, editable);
             }
         });
 
     }
 }
+
+export { getAgenda };
