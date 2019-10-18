@@ -3,14 +3,14 @@ import { Ajax } from '../modules/ajax.js';
 const baseUrl = "https://api-voting-system.herokuapp.com";
 class AgendaManager {
     constructor() {
-            this.xhrRequest = new Ajax(baseUrl);
-            this.localDataStorage = new LocalData();
-            this.agendas = [];
-            this.init();
-        }
-        /**
-         * @function init Fill the agenda list with the info from database and localstorage
-         */
+        this.xhrRequest = new Ajax(baseUrl);
+        this.localDataStorage = new LocalData();
+        this.agendas = [];
+        this.init();
+    }
+    /**
+     * @function init Fill the agenda list with the info from database and localstorage
+     */
     init() {
         this.clearSessionList();
         var idList = JSON.parse(this.localDataStorage.getLocalStorageItem('idList'));
@@ -49,7 +49,7 @@ class AgendaManager {
             newItem.id = agenda.agenda.id;
             newItem.name = "itemAgenda";
             newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.agenda.id} \n Nombre: ${agenda.title}`));
-            newItem.addEventListener("click", function() {
+            newItem.addEventListener("click", function () {
                 var current = document.getElementsByClassName("active");
                 if (current.length > 0) {
                     current[0].className = current[0].className.replace(" active", "");
@@ -83,6 +83,7 @@ class AgendaManager {
         for (i = 0; i < sessionList.length; i++) {
             agendaItemsContainer.removeChild(sessionList[i]);
         }
+        this.agendas = [];
     }
 
     /**
