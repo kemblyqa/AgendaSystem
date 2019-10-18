@@ -24,7 +24,8 @@ body {
 .sidebar a {
     display: block;
     color: black;
-    padding: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     text-decoration: none;
     /* word-break: break-all; */
     word-wrap: break-word;
@@ -65,13 +66,28 @@ div.content .card {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
+.addMinute {
+    width: 100%;
+    font-family: "Lato", sans-serif;
+    box-shadow: inset 0px 1px 17px 4px #91b8b3;
+    background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    background-color: #768d87;
+    border: 1px solid #566963;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Times New Roman;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0px 0px 9px #2b665e;
+}
+
 #searchFilterInput {
     background-image: url('./assets/searchicon_.png');
     background-position: right;
     background-repeat: no-repeat;
     width: 99.5%;
     height: 30px;
-    font-size: 16px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
 }
@@ -83,16 +99,71 @@ div.content .card {
         position: relative;
         overflow-y: scroll;
     }
-    .sidebar a {
+    a {
         float: left;
+        width: 100%;
     }
     div.content {
         margin-left: 0;
         width: 100%;
         height: 71%;
     }
+    .sidebar .addMinute {
+        height: 15%;
+    }
+    .content .addMinute {
+        height: 5%;
+    }
+    .edit[id*="agendaSegmentEdit"] {
+        font-size: 13px;
+    }
+    .group,
+    div,
+    .edit,
+    button,
+    .addMinute,
+    #searchFilterInput,
+    .edit[id*="editElement100"] {
+        font-size: 7px;
+    }
+}
+
+@media screen and (max-width: 1300px) and (min-width: 700px) {
+    .group,
+    div,
+    .edit,
+    button,
+    .addMinute,
+    #searchFilterInput,
+    .edit[id*="editElement100"] {
+        font-size: 10px;
+    }
+    .edit[id*="agendaSegmentEdit"] {
+        font-size: 17px;
+    }
     .addMinute {
-        height: 20%;
+        height: 4%;
+    }
+    a {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .group,
+    div,
+    .edit,
+    button,
+    .addMinute,
+    #searchFilterInput,
+    .edit[id*="editElement100"] {
+        font-size: 16px;
+    }
+    .edit[id*="agendaSegmentEdit"] {
+        font-size: 21px;
+    }
+    .addMinute {
+        height: 4%;
     }
 }
 
@@ -128,7 +199,6 @@ button {
     cursor: pointer;
     color: #ffffff;
     font-family: Times New Roman;
-    font-size: 15px;
     font-weight: bold;
     text-decoration: none;
     text-shadow: 0px 0px 9px #2b665e;
@@ -171,7 +241,6 @@ header {
 
 .edit[id*="agendaSegmentEdit"] {
     overflow: inherit;
-    font-size: 25px;
 }
 
 .group {
@@ -297,22 +366,4 @@ td {
 
 th {
     font-weight: bold;
-}
-
-.addMinute {
-    width: 100%;
-    font-family: "Lato", sans-serif;
-    font-size: 20px;
-    box-shadow: inset 0px 1px 17px 4px #91b8b3;
-    background: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
-    background-color: #768d87;
-    border: 1px solid #566963;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Times New Roman;
-    font-weight: bold;
-    text-decoration: none;
-    text-shadow: 0px 0px 9px #2b665e;
-    height: 4%;
 }
