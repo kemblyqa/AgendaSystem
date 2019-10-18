@@ -28,6 +28,7 @@ class AgendaManager {
     initAgendaServerList() {
         this.xhrRequest.getMinutes((data) => {
             for (var i = 0; i < data.length; i++) {
+                console.log(data);
                 data[i].saved = true; //property to make item no editable  
                 this.agendas.push(data[i]);
             }
@@ -45,9 +46,9 @@ class AgendaManager {
         for (var i = 0; i < agendaList.length; i++) {
             var newItem = document.createElement("a");
             var agenda = agendaList[i];
-            newItem.id = agenda.id;
+            newItem.id = agenda.agenda.id;
             newItem.name = "itemAgenda";
-            newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.id} \n Nombre: ${agenda.title}`));
+            newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.agenda.id} \n Nombre: ${agenda.title}`));
             newItem.addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
                 if (current.length > 0) {
