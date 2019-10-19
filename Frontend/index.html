@@ -16,28 +16,24 @@
 <body>
     <div class="sidebar" id="agenda-list-manager">
         <input class="addMinute" type="button" onclick="agenda.createNewMinute()" value="Crear Nueva Acta">
-        <input type="text" id="searchFilterInput" onkeyup="agenda.searchFilter()" placeholder="Buscar acta ">
+        <input type="text" id="searchFilterInput" onkeyup="agenda.searchFilter()" placeholder="Buscar acta por ID...">
     </div>
     <div style="display:none;" class="content" id="container-id">
-        <input id="saveLocal" class="addMinute" type="button" style="width: 50%; float: left;" value="Guardar Local" onclick="agenda.saveLocalStorage()">
-        <input id="saveDB" class="addMinute" type="button" style="width: 50%;" value="Guardar Definitivo" onclick="agenda.saveFinal()">
+        <input id="saveLocal" class="addMinute" type="button" style="width: 50%; float: left;" value="Guardar Local"
+            onclick="agenda.saveLocalStorage()">
+        <input id="saveDB" class="addMinute" type="button" style="width: 50%;" value="Guardar Definitivo"
+            onclick="agenda.saveFinal()">
         <div class="card">
-
             <div id="elements">
-
             </div>
         </div>
-
-
         <!-- The Modal -->
         <div id="myModal" class="modal">
-
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p id="showData"></p>
             </div>
-
         </div>
     </div>
 </body>

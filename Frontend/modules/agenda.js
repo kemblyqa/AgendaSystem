@@ -53,7 +53,6 @@ class AgendaManager {
             var agenda = element;
             newItem.id = agenda.id;
             newItem.name = "itemAgenda";
-
             newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.id} \n Nombre: ${agenda.title.match(/<h1>(.*?)<\/h1>/)[1]}`));
             newItem.addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
