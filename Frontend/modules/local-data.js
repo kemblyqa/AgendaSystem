@@ -15,7 +15,7 @@ class LocalData {
         var list = JSON.parse(this.getLocalStorageItem("idList"));
         if (this.isAgendaRegistered(newKey)) return false;
         list.push(newKey);
-        this.saveLocalStorageItem("idList", list);
+        localStorage.setItem("idList", list);
         return true;
     }
 
