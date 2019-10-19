@@ -28,10 +28,11 @@ class LocalData {
         var list = JSON.parse(this.getLocalStorageItem("idList"));
         if (list != null) {
             for (var i = 0; i < list.length; i++) {
-                if (list[i] == key) return false;
+                if (list[i] == key) return true;
             }
         }
-        return true;
+
+        return false;
     }
 
     /**
