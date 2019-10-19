@@ -1,7 +1,10 @@
 import { AgendaManager } from './modules/agenda.js';
 import { MinuteViewManager } from './modules/minute_view/main.js'
 window.listElementsCreated = [];
-window.listVotation = [];
+window.listVotation = [
+    { "name": "prueba1", "id": 1, "favor": 5, "nay": 1, "blank": 5 }
+];
+//{ "name": "prueba3", "id": 3, "favor": 2, "nay": 7, "blank": 1 },
 window.test = {
     "id": "dasfiorwio",
     "title": "<h1>Titulo Prueba..</h1>",

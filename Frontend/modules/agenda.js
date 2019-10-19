@@ -15,10 +15,12 @@ class AgendaManager {
         this.clearSessionList();
         var idList = JSON.parse(this.localDataStorage.getLocalStorageItem('idList'));
         if (idList === undefined || idList === null) { //There's no agendas in localstorage
-            localStorage.setItem("idList", JSON.stringify([]));
+            localStorage.setItem("idList", JSON.stringify({ ids: [] }));
         } else {
-            for (var i = 0; i < idList.length; i++) {
-                this.agendas.push(JSON.parse(this.localDataStorage.getLocalStorageItem(idList[i])));
+            if (idList.ids !== []) {
+                for (var i = 0; i < idList.ids.length; i++) {
+                    this.agendas.push(JSON.parse(this.localDataStorage.getLocalStorageItem(idList.ids[i].id)));
+                }
             }
         }
         this.initAgendaServerList();
@@ -31,10 +33,10 @@ class AgendaManager {
     initAgendaServerList() {
         this.xhrRequest.getMinutes((data) => {
             for (var i = 0; i < data.length; i++) {
-                console.log(data);
-                data[i].saved = true; //property to make item no editable  
-                this.agendas.push(data[i]);
+                data[i].agenda.saved = true; //property to make item no editable  
+                this.agendas.push(data[i].agenda);
             }
+            console.log(this.agendas)
             this.populateList(this.agendas);
         })
     }
@@ -49,9 +51,9 @@ class AgendaManager {
         for (var i = 0; i < agendaList.length; i++) {
             var newItem = document.createElement("a");
             var agenda = agendaList[i];
-            newItem.id = agenda.agenda.id;
+            newItem.id = agenda.id;
             newItem.name = "itemAgenda";
-            newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.agenda.id} \n Nombre: ${agenda.agenda.title.match(/<h1>(.*?)<\/h1>/)[1]}`));
+            newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.id} \n Nombre: ${agenda.title.match(/<h1>(.*?)<\/h1>/)[1]}`));
             newItem.addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
                 if (current.length > 0) {
@@ -74,7 +76,7 @@ class AgendaManager {
         document.getElementById("elements").innerHTML = "";
         window.listElementsCreated = [];
         console.log(agenda);
-        window.minute.generateInfo(!agenda.saved, agenda.agenda); //&FALTA VERIFICAR SI ES DE LA BASE
+        window.minute.generateInfo(!agenda.saved, agenda);
     };
 
     /**

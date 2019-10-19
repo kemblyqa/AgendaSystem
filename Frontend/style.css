@@ -209,7 +209,8 @@ button:hover {
     background-color: #6c7c7c;
 }
 
-button:disabled {
+button:disabled,
+.addMinute:disabled {
     color: sandybrown;
 }
 

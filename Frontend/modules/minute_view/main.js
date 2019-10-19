@@ -76,12 +76,11 @@ class MinuteViewManager {
         agenda.generateAgenda(minute.agenda, editable);
         if (editable) {
             window.agenda.saveLocalStorage()
+            document.getElementById("saveLocal").disabled = false;
+            document.getElementById("saveDB").disabled = false;
         } else {
-            let btnLocal = document.getElementById("saveLocal");
-            let btnDB = document.getElementById("saveDB");
-            let padre = btnDB.parentNode;
-            padre.removeChild(btnLocal);
-            padre.removeChild(btnDB);
+            document.getElementById("saveLocal").disabled = true;
+            document.getElementById("saveDB").disabled = true;
         }
 
     }
