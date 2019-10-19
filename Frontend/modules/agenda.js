@@ -15,13 +15,14 @@ class AgendaManager {
         this.clearSessionList();
         var idList = JSON.parse(this.localDataStorage.getLocalStorageItem('idList'));
         if (idList === undefined || idList === null) { //There's no agendas in localstorage
-            localStorage.setItem("idList",JSON.stringify([]));
+            localStorage.setItem("idList", JSON.stringify([]));
         } else {
             for (var i = 0; i < idList.length; i++) {
                 this.agendas.push(JSON.parse(this.localDataStorage.getLocalStorageItem(idList[i])));
             }
         }
         this.initAgendaServerList();
+        this.getVotesData();
     }
 
     /**
@@ -126,6 +127,15 @@ class AgendaManager {
         let dato = window.minute.saveData()
         this.localDataStorage.saveLocalStorageItem(dato.id, dato);
     }
+
+    getVotesData() {
+        this.xhrRequest.getVotes((data) => {
+            console.log(data);
+            window.listVotation = data
+        })
+    }
+
+
 }
 
 export { AgendaManager };
