@@ -1,6 +1,12 @@
 import { newAgenda } from './newAgenda.js'
 
 class tableVotesSelect {
+
+    /**
+     * @function createTableFromJSON this function create a dinamically table for select votes
+     * @param {array} list 
+     * @param {html} pointAgendaEdit 
+     */
     createTableFromJSON(list, pointAgendaEdit) {
 
         // EXTRACT VALUE FOR HTML HEADER. 

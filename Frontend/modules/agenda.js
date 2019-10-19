@@ -111,6 +111,9 @@ class AgendaManager {
         }
     }
 
+    /**
+     * @function createNewMinute used for create a new minute and show it in the view
+     */
     createNewMinute() {
         document.getElementById("elements").innerHTML = "";
         window.listElementsCreated = [];
@@ -118,22 +121,39 @@ class AgendaManager {
         window.minute.createAgenda();
     }
 
+    /**
+     * @function refreshMinute used for refresh the view when we add a new element to the minute
+     */
     refreshMinute() {
         document.getElementById("elements").innerHTML = "";
-        window.minute.generateInfo(true, window.minute.saveData());
+        let data = window.minute.saveData();
+        if (data.saved != null || data.saved != undefined) {
+            window.minute.generateInfo(!data.saved, data);
+        } else {
+            window.minute.generateInfo(true, data);
+        }
     }
 
+    /**
+     * @function saveFinal used for save all data of json in the database
+     */
     async saveFinal() {
         let dato = window.minute.saveData()
         await this.localDataStorage.saveIntoServerItem(dato);
-        location.reload();
+
     }
 
+    /**
+     * @function saveLocalStorage used for save all data of minute in local storage
+     */
     saveLocalStorage() {
         let dato = window.minute.saveData()
         this.localDataStorage.saveLocalStorageItem(dato.id, dato);
     }
 
+    /**
+     * @function getVotesData used for get all votes from database
+     */
     getVotesData() {
         this.xhrRequest.getVotes((data) => {
             console.log(data);

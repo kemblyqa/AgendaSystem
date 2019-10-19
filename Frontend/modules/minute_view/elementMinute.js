@@ -115,6 +115,11 @@ class elementMinute {
         document.getElementById('elements').appendChild(pointAgendaGroup);
     }
 
+    /**
+     * @function createTitle create a title html element in the view
+     * @param {string} name 
+     * @param {boolean} editable 
+     */
     createTitle(name, editable) {
         let create = new Creation();
         let assign = new Date();
@@ -138,6 +143,11 @@ class elementMinute {
         return pointAgendaEdit;
     }
 
+    /**
+     * @function createGeneralAspects create general aspects html in the view
+     * @param {string} name 
+     * @param {boolean} editable 
+     */
     createGeneralAspects(information, editable) {
         let creation = new Creation();
         let assign = new Date();
@@ -165,6 +175,10 @@ class elementMinute {
 
     }
 
+    /**
+     * @function createSegmentAgenda create an segment division in the html for add agenda
+     * @param {boolean} editable 
+     */
     createSegmentAgenda(editable) {
         let creation = new Creation();
         creation.createDivision();
@@ -183,8 +197,6 @@ class elementMinute {
             let buttonRecitals = creation.createButtonPoints();
             elementGroup.appendChild(buttonRecitals);
         }
-
-
         document.getElementById('elements').appendChild(elementGroup);
     }
 }

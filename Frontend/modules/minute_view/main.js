@@ -10,6 +10,9 @@ class MinuteViewManager {
 
     }
 
+    /**
+     * @function createAgenda main function for create a new agenda
+     */
     createAgenda() {
         let agenda = new elementMinute();
         let global = new newAgenda();
@@ -67,6 +70,11 @@ class MinuteViewManager {
         }
     }
 
+    /**
+     * @function generateInfo main function for create an exist minute
+     * @param {boolean} editable 
+     * @param {json} minute 
+     */
     generateInfo(editable, minute) {
         let segment = new elementMinute();
         let agenda = new getAgenda();

@@ -3,12 +3,22 @@ import { elementMinute } from './elementMinute.js'
 
 class getAgenda {
 
+    /**
+     * @function generateTitle used for call create title and also add the item to the json
+     * @param {name} general 
+     * @param {boolean} editable 
+     */
     generateTitle(title, editable, id) {
         let creation = new elementMinute();
         let pointAgendaEdit = creation.createTitle(title, editable);
         listElementsCreated = { "id": id, "title": pointAgendaEdit.id, "general": 0, "agenda": [] };
     }
 
+    /**
+     * @function generateGeneralAspects used for call create general aspects and also add the item to the json
+     * @param {name} general 
+     * @param {boolean} editable 
+     */
     generateGeneralAspects(general, editable) {
         let creation = new elementMinute();
         let pointAgendaEdit = creation.createGeneralAspects(general, editable);

@@ -2,7 +2,7 @@ import { elementMinute } from './elementMinute.js'
 
 class newAgenda {
     /**
-     * @function titleConvert convert id introduction in ckeditor
+     * @function titleConvert create a new html title and also add a id to the minute
      */
     createHtmlTitle() {
         let assign = new Date();
@@ -12,6 +12,9 @@ class newAgenda {
         listElementsCreated = { "id": date, "title": pointAgendaEdit.id, "general": 0, "agenda": [] };
     }
 
+    /**
+     * @function createGeneralAspects create a new genral aspects in the html
+     */
     createGeneralAspects() {
         let creation = new elementMinute();
         let pointAgendaEdit = creation.createGeneralAspects('<h2>Aspectos Generales..</h2>', true);
