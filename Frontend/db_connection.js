@@ -1,6 +1,6 @@
 export function GetAgendas(callBack) {
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
+    xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             callBack(this.responseText);
         }
@@ -12,7 +12,7 @@ export function GetAgendas(callBack) {
 
 export function GetVotes(callBack) {
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
+    xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             callBack(this.responseText);
         }
@@ -22,11 +22,11 @@ export function GetVotes(callBack) {
     xhttp.send();
 }
 
-export function InsertAgena(agenda, callBack) {
+export function InsertAgenda(agenda, callBack) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "https://api-voting-system.herokuapp.com/newagenda", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.onreadystatechange = function () {
+    xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var json = JSON.parse(this.responseText);
             callBack(json);

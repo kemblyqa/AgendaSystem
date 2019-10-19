@@ -39,6 +39,7 @@ class newAgenda {
                 element["recitals"].push(pointRecitals.id)
             }
         });
+        window.agenda.refreshMinute();
     }
 
     /**
@@ -54,6 +55,7 @@ class newAgenda {
                 element["agreements"].push({ "agreement": pointAgreement.id, "vote": 0 })
             }
         });
+        window.agenda.refreshMinute();
     }
 
     /**
@@ -78,6 +80,7 @@ class newAgenda {
         }
         var modal = document.getElementById("myModal");
         modal.style.display = "none";
+        window.agenda.refreshMinute();
     }
 }
 

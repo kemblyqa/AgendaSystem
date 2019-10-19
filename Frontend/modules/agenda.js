@@ -3,14 +3,14 @@ import { Ajax } from '../modules/ajax.js';
 const baseUrl = "https://api-voting-system.herokuapp.com";
 class AgendaManager {
     constructor() {
-        this.xhrRequest = new Ajax(baseUrl);
-        this.localDataStorage = new LocalData();
-        this.agendas = [];
-        this.init();
-    }
-    /**
-     * @function init Fill the agenda list with the info from database and localstorage
-     */
+            this.xhrRequest = new Ajax(baseUrl);
+            this.localDataStorage = new LocalData();
+            this.agendas = [];
+            this.init();
+        }
+        /**
+         * @function init Fill the agenda list with the info from database and localstorage
+         */
     init() {
         this.clearSessionList();
         var idList = JSON.parse(this.localDataStorage.getLocalStorageItem('idList'));
@@ -49,7 +49,7 @@ class AgendaManager {
             newItem.id = agenda.agenda.id;
             newItem.name = "itemAgenda";
             newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.agenda.id} \n Nombre: ${agenda.agenda.title.match(/<h1>(.*?)<\/h1>/)[1]}`));
-            newItem.addEventListener("click", function () {
+            newItem.addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
                 if (current.length > 0) {
                     current[0].className = current[0].className.replace(" active", "");
@@ -113,9 +113,15 @@ class AgendaManager {
         window.minute.generateInfo(true, window.minute.saveData());
     }
 
-    saveFinal() { //&FALTA GUARDAR EN LA BASE 
+    async saveFinal() { //&FALTA GUARDAR EN LA BASE 
         let dato = window.minute.saveData()
+        await this.localDataStorage.saveIntoServerItem(dato);
         location.reload();
+    }
+
+    saveLocalStorage() {
+        let dato = window.minute.saveData()
+        this.localDataStorage.saveLocalStorageItem(dato.id, dato);
     }
 }
 
