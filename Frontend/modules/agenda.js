@@ -70,7 +70,8 @@ class AgendaManager {
     showAgendaPreview(agenda) {
         document.getElementById("elements").innerHTML = "";
         window.listElementsCreated = [];
-        window.minute.generateInfo(true, test); //&FALTA VERIFICAR SI ES DE LA BASE
+        console.log(agenda);
+        window.minute.generateInfo(!agenda.saved, agenda.agenda); //&FALTA VERIFICAR SI ES DE LA BASE
     };
 
     /**
@@ -113,7 +114,7 @@ class AgendaManager {
         window.minute.generateInfo(true, window.minute.saveData());
     }
 
-    async saveFinal() { //&FALTA GUARDAR EN LA BASE 
+    async saveFinal() {
         let dato = window.minute.saveData()
         await this.localDataStorage.saveIntoServerItem(dato);
         location.reload();

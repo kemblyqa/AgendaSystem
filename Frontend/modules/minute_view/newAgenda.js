@@ -5,15 +5,18 @@ class newAgenda {
      * @function titleConvert convert id introduction in ckeditor
      */
     createHtmlTitle() {
+        let assign = new Date();
+        let date = `${assign.getDate()}${assign.getSeconds()}${assign.getMilliseconds()}${Math.floor(Math.random() * 100000)}`;
         let creation = new elementMinute();
         let pointAgendaEdit = creation.createTitle('<h1>Titulo..</h1>', true);
-        listElementsCreated = { "title": pointAgendaEdit.id, "general": 0, "agenda": [] };
+        listElementsCreated = { "id": date, "title": pointAgendaEdit.id, "general": 0, "agenda": [] };
     }
 
     createGeneralAspects() {
         let creation = new elementMinute();
         let pointAgendaEdit = creation.createGeneralAspects('<h2>Aspectos Generales..</h2>', true);
         listElementsCreated.general = pointAgendaEdit.id;
+        window.agenda.saveLocalStorage()
     }
 
     /**
@@ -24,6 +27,7 @@ class newAgenda {
         let agenda = new elementMinute();
         let pointAgendaEdit = agenda.createElementAgenda('<p><em>Punto Agenda.</em></p>', 1, true)
         listElementsCreated.agenda.push({ "point": pointAgendaEdit.id, "recitals": [], "agreements": [] })
+        window.agenda.saveLocalStorage()
     }
 
     /**
@@ -39,6 +43,7 @@ class newAgenda {
                 element["recitals"].push(pointRecitals.id)
             }
         });
+        window.agenda.saveLocalStorage();
         window.agenda.refreshMinute();
     }
 
@@ -55,7 +60,9 @@ class newAgenda {
                 element["agreements"].push({ "agreement": pointAgreement.id, "vote": 0 })
             }
         });
+        window.agenda.saveLocalStorage();
         window.agenda.refreshMinute();
+
     }
 
     /**
@@ -80,6 +87,7 @@ class newAgenda {
         }
         var modal = document.getElementById("myModal");
         modal.style.display = "none";
+        window.agenda.saveLocalStorage();
         window.agenda.refreshMinute();
     }
 }

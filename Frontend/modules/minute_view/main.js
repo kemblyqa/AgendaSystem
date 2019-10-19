@@ -22,11 +22,10 @@ class MinuteViewManager {
      * @function saveData save all information generated
      */
     saveData() { //FALTA TERMINAR ESTA FUNCION
-        let assign = new Date();
-        let date = `${assign.getDate()}${assign.getSeconds()}${assign.getMilliseconds()}${Math.floor(Math.random() * 100000)}`;
+
         var titleValue = CKEDITOR.instances[listElementsCreated.title].getData();
         var generalValue = CKEDITOR.instances[listElementsCreated.general].getData();
-        let responseData = { "id": date, "title": titleValue, "general": generalValue, "agenda": [] };
+        let responseData = { "id": listElementsCreated.id, "title": titleValue, "general": generalValue, "agenda": [] };
         for (let index = 0; index < listElementsCreated.agenda.length; index++) {
             var pointValue = CKEDITOR.instances[listElementsCreated.agenda[index].point].getData();
             responseData.agenda.push({ "point": pointValue, "recitals": [], "agreements": [] });
@@ -71,10 +70,20 @@ class MinuteViewManager {
     generateInfo(editable, minute) {
         let segment = new elementMinute();
         let agenda = new getAgenda();
-        agenda.generateTitle(minute.title, editable);
+        agenda.generateTitle(minute.title, editable, minute.id);
         agenda.generateGeneralAspects(minute.general, editable);
         segment.createSegmentAgenda(editable);
         agenda.generateAgenda(minute.agenda, editable);
+        if (editable) {
+            window.agenda.saveLocalStorage()
+        } else {
+            let btnLocal = document.getElementById("saveLocal");
+            let btnDB = document.getElementById("saveDB");
+            let padre = btnDB.parentNode;
+            padre.removeChild(btnLocal);
+            padre.removeChild(btnDB);
+        }
+
     }
 
 

@@ -26,8 +26,10 @@ class LocalData {
      */
     isAgendaRegistered(key) {
         var list = JSON.parse(this.getLocalStorageItem("idList"));
-        for (var i = 0; i < list.length; i++) {
-            if (list[i] == key) return false;
+        if (list != null) {
+            for (var i = 0; i < list.length; i++) {
+                if (list[i] == key) return false;
+            }
         }
         return true;
     }
@@ -62,9 +64,13 @@ class LocalData {
      * @param {string} key the key to access to the localstorage value
      * @param {string} value the information about the agenda
      */
-    saveLocalStorageItem(key, value) {
-        this.setNewKeyAgenda(key);
-        localStorage.setItem(key, JSON.stringify(value));;
+    async saveLocalStorageItem(key, value) {
+        if (this.existStorageItem(key)) {
+            localStorage.setItem(key, JSON.stringify(value));
+        } else {
+            this.setNewKeyAgenda(key);
+            localStorage.setItem(key, JSON.stringify(value));
+        }
     }
 
     /**

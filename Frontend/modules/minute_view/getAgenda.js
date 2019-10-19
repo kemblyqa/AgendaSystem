@@ -3,10 +3,10 @@ import { elementMinute } from './elementMinute.js'
 
 class getAgenda {
 
-    generateTitle(title, editable) {
+    generateTitle(title, editable, id) {
         let creation = new elementMinute();
         let pointAgendaEdit = creation.createTitle(title, editable);
-        listElementsCreated = { "title": pointAgendaEdit.id, "general": 0, "agenda": [] };
+        listElementsCreated = { "id": id, "title": pointAgendaEdit.id, "general": 0, "agenda": [] };
     }
 
     generateGeneralAspects(general, editable) {
