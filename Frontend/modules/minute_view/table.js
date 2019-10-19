@@ -40,6 +40,7 @@ class tableVotesSelect {
                     var tabCell = tr.insertCell(-1);
                     tabCell.innerHTML = '';
                     let buttonAgreement = document.createElement("button");
+                    buttonAgreement.classList.add("tableBtn");
                     buttonAgreement.appendChild(document.createTextNode('Ψ'));
                     buttonAgreement.addEventListener("click", function() {
                         let newElement = new newAgenda();

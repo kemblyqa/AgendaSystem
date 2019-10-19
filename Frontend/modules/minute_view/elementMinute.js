@@ -87,7 +87,7 @@ class elementMinute {
 
         let title = document.createElement("div");
         let style = document.createElement("h3");
-        style.appendChild(document.createTextNode(jsonElement.name));
+        style.appendChild(document.createTextNode(jsonElement.vote_name));
         title.appendChild(style);
         if (editable) {
             title.classList.add("voteEditable");

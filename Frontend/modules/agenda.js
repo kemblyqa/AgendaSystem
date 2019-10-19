@@ -53,6 +53,7 @@ class AgendaManager {
             var agenda = agendaList[i];
             newItem.id = agenda.id;
             newItem.name = "itemAgenda";
+
             newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.id} \n Nombre: ${agenda.title.match(/<h1>(.*?)<\/h1>/)[1]}`));
             newItem.addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
@@ -75,8 +76,12 @@ class AgendaManager {
     showAgendaPreview(agenda) {
         document.getElementById("elements").innerHTML = "";
         window.listElementsCreated = [];
-        console.log(agenda);
-        window.minute.generateInfo(!agenda.saved, agenda);
+        if (agenda.saved != null || agenda.saved != undefined) {
+            window.minute.generateInfo(!agenda.saved, agenda);
+        } else {
+            window.minute.generateInfo(true, agenda);
+        }
+
     };
 
     /**
