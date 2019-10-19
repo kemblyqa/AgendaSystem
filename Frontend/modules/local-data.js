@@ -14,8 +14,8 @@ class LocalData {
     setNewKeyAgenda(newKey) {
         var list = JSON.parse(this.getLocalStorageItem("idList"));
         if (this.isAgendaRegistered(newKey)) return false;
-        list.push(newKey);
-        localStorage.setItem("idList", list);
+        list.ids.push({ id: newKey });
+        localStorage.setItem("idList", JSON.stringify(list));
         return true;
     }
 
@@ -26,12 +26,9 @@ class LocalData {
      */
     isAgendaRegistered(key) {
         var list = JSON.parse(this.getLocalStorageItem("idList"));
-        if (list != null) {
-            for (var i = 0; i < list.length; i++) {
-                if (list[i] == key) return true;
-            }
+        for (var i = 0; i < list.ids.length; i++) {
+            if (list.ids[i].id == key) return true;
         }
-
         return false;
     }
 
@@ -50,10 +47,10 @@ class LocalData {
     clearLocalStorageItem(key) {
         localStorage.removeItem(key);
         var list = JSON.parse(this.getLocalStorageItem("idList"));
-        for (var i = 0; i < list.length; i++) {
-            if (list[i] == key) {
-                list.splice(i, 1);
-                this.saveLocalStorageItem("idList", list);
+        for (var i = 0; i < list.ids.length; i++) {
+            if (list.ids[i].id == key) {
+                list.ids.splice(key, 1);
+                localStorage.setItem("idList", JSON.stringify(list));
                 return true;
             }
         }
@@ -65,13 +62,10 @@ class LocalData {
      * @param {string} key the key to access to the localstorage value
      * @param {string} value the information about the agenda
      */
-    async saveLocalStorageItem(key, value) {
-        if (this.existStorageItem(key)) {
-            localStorage.setItem(key, JSON.stringify(value));
-        } else {
-            this.setNewKeyAgenda(key);
-            localStorage.setItem(key, JSON.stringify(value));
-        }
+    saveLocalStorageItem(key, value) {
+        console.log(key + JSON.stringify(value));
+        this.setNewKeyAgenda(key);
+        localStorage.setItem(key, JSON.stringify(value));;
     }
 
     /**
