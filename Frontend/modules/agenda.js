@@ -53,6 +53,7 @@ class AgendaManager {
             var agenda = element;
             newItem.id = agenda.id;
             newItem.name = "itemAgenda";
+
             newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.id} \n Nombre: ${agenda.title.match(/<h1>(.*?)<\/h1>/)[1]}`));
             newItem.addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
@@ -74,8 +75,12 @@ class AgendaManager {
     showAgendaPreview(agenda) {
         document.getElementById("elements").innerHTML = "";
         window.listElementsCreated = [];
-        console.log(agenda);
-        window.minute.generateInfo(!agenda.saved, agenda);
+        if (agenda.saved != null || agenda.saved != undefined) {
+            window.minute.generateInfo(!agenda.saved, agenda);
+        } else {
+            window.minute.generateInfo(true, agenda);
+        }
+
     };
 
     /**
@@ -106,6 +111,9 @@ class AgendaManager {
         }
     }
 
+    /**
+     * @function createNewMinute used for create a new minute and show it in the view
+     */
     createNewMinute() {
         document.getElementById("elements").innerHTML = "";
         window.listElementsCreated = [];
@@ -113,9 +121,17 @@ class AgendaManager {
         window.minute.createAgenda();
     }
 
+    /**
+     * @function refreshMinute used for refresh the view when we add a new element to the minute
+     */
     refreshMinute() {
         document.getElementById("elements").innerHTML = "";
-        window.minute.generateInfo(true, window.minute.saveData());
+        let data = window.minute.saveData();
+        if (data.saved != null || data.saved != undefined) {
+            window.minute.generateInfo(!data.saved, data);
+        } else {
+            window.minute.generateInfo(true, data);
+        }
     }
 
     saveFinal() {
@@ -123,11 +139,17 @@ class AgendaManager {
         this.localDataStorage.saveIntoServerItem(dato);
     }
 
+    /**
+     * @function saveLocalStorage used for save all data of minute in local storage
+     */
     saveLocalStorage() {
         let dato = window.minute.saveData()
         this.localDataStorage.saveLocalStorageItem(dato.id, dato);
     }
 
+    /**
+     * @function getVotesData used for get all votes from database
+     */
     getVotesData() {
         this.xhrRequest.getVotes((data) => {
             console.log(data);

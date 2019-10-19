@@ -1,6 +1,12 @@
 import { newAgenda } from './newAgenda.js'
 
 class tableVotesSelect {
+
+    /**
+     * @function createTableFromJSON this function create a dinamically table for select votes
+     * @param {array} list 
+     * @param {html} pointAgendaEdit 
+     */
     createTableFromJSON(list, pointAgendaEdit) {
 
         // EXTRACT VALUE FOR HTML HEADER. 
@@ -40,6 +46,7 @@ class tableVotesSelect {
                     var tabCell = tr.insertCell(-1);
                     tabCell.innerHTML = '';
                     let buttonAgreement = document.createElement("button");
+                    buttonAgreement.classList.add("tableBtn");
                     buttonAgreement.appendChild(document.createTextNode('Ψ'));
                     buttonAgreement.addEventListener("click", function() {
                         let newElement = new newAgenda();
