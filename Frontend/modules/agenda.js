@@ -36,7 +36,7 @@ class AgendaManager {
                 data[i].agenda.saved = true; //property to make item no editable  
                 this.agendas.push(data[i].agenda);
             }
-            console.log(this.agendas)
+            console.log(this.agendas);
             this.populateList(this.agendas);
         })
     }
@@ -118,10 +118,9 @@ class AgendaManager {
         window.minute.generateInfo(true, window.minute.saveData());
     }
 
-    async saveFinal() {
+    saveFinal() {
         let dato = window.minute.saveData()
-        await this.localDataStorage.saveIntoServerItem(dato);
-        location.reload();
+        this.localDataStorage.saveIntoServerItem(dato);
     }
 
     saveLocalStorage() {

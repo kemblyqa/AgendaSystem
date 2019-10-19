@@ -45,11 +45,12 @@ class LocalData {
      * @returns {boolean} true if the element is deleted correctly
      */
     clearLocalStorageItem(key) {
+        console.log("www");
         localStorage.removeItem(key);
         var list = JSON.parse(this.getLocalStorageItem("idList"));
         for (var i = 0; i < list.ids.length; i++) {
             if (list.ids[i].id == key) {
-                list.ids.splice(key, 1);
+                list.ids.splice(i, 1);
                 localStorage.setItem("idList", JSON.stringify(list));
                 return true;
             }
@@ -64,7 +65,7 @@ class LocalData {
      */
     saveLocalStorageItem(key, value) {
         this.setNewKeyAgenda(key);
-        localStorage.setItem(key, JSON.stringify(value));;
+        localStorage.setItem(key, JSON.stringify(value));
     }
 
     /**
@@ -73,8 +74,13 @@ class LocalData {
      */
     saveIntoServerItem(minute) {
         this.xhrRequest.insertMinute(minute, (data) => {
-            console.log(data);
-            this.clearLocalStorageItem(minute.agenda.id);
+            var response = JSON.parse(data);
+            if (response.status == "success"){
+                this.clearLocalStorageItem(minute.id);
+                location.reload();
+            } else {
+                alert("Error en agregar agenda a la base de datos.");
+            }
         })
     }
 

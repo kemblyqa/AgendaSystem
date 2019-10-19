@@ -5,14 +5,23 @@ class Ajax {
 
     getMinutes(callBack) {
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.info("Respuesta obtenida correctamente.")
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                switch (this.status) {
+                    case 200: {
+                        console.info("Respuesta obtenida correctamente.");
+                        break;
+                    }
+                    case 400: {
+                        console.error("Datos inválidos.");
+                        break;
+                    }
+                    case 500: {
+                        console.error("Error interno del servidor.");
+                        break;
+                    }
+                }
                 callBack(JSON.parse(this.responseText));
-            } else if (this.status == 500) {
-                console.error("Error interno del servidor.");
-            } else if (this.status == 400) {
-                console.error("Datos inválidos.");
             }
         };
         // * True means asynchronous call.
@@ -22,14 +31,23 @@ class Ajax {
 
     getVotes(callBack) {
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.info("Respuesta obtenida correctamente.")
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                switch (this.status) {
+                    case 200: {
+                        console.info("Respuesta obtenida correctamente.");
+                        break;
+                    }
+                    case 400: {
+                        console.error("Datos inválidos.");
+                        break;
+                    }
+                    case 500: {
+                        console.error("Error interno del servidor.");
+                        break;
+                    }
+                }
                 callBack(JSON.parse(this.responseText));
-            } else if (this.status == 500) {
-                console.error("Error interno del servidor.");
-            } else if (this.status == 400) {
-                console.error("Datos inválidos.");
             }
         };
         // * True means asynchronous call.
@@ -41,14 +59,23 @@ class Ajax {
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", `${this.url}/newminute`, true);
         xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.info("Respuesta obtenida correctamente.")
-                callBack(JSON.parse(this.responseText));
-            } else if (this.status == 500) {
-                console.error("Error interno del servidor.");
-            } else if (this.status == 400) {
-                console.error("Datos inválidos.");
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                switch (this.status) {
+                    case 201: {
+                        console.info("Respuesta obtenida correctamente.")
+                        break;
+                    }
+                    case 400: {
+                        console.error("Datos inválidos.");
+                        break;
+                    }
+                    case 500: {
+                        console.error("Error interno del servidor.");
+                        break;
+                    }
+                }
+                callBack(this.responseText);
             }
         }
         var data = JSON.stringify(agenda);
