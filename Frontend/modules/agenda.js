@@ -48,9 +48,9 @@ class AgendaManager {
     populateList(agendaList) {
         var agendaItemsContainer = document.getElementById("agenda-list-manager");
         // Populate with agendas.
-        for (var i = 0; i < agendaList.length; i++) {
+        agendaList.forEach(element => {
             var newItem = document.createElement("a");
-            var agenda = agendaList[i];
+            var agenda = element;
             newItem.id = agenda.id;
             newItem.name = "itemAgenda";
             newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.id} \n Nombre: ${agenda.title.match(/<h1>(.*?)<\/h1>/)[1]}`));
@@ -60,12 +60,11 @@ class AgendaManager {
                     current[0].className = current[0].className.replace(" active", "");
                 }
                 this.className += " active";
-                //llamar funcion para mostrar agenda
                 document.getElementById('container-id').style.display = '';
                 window.agenda.showAgendaPreview(agenda);
             });
             agendaItemsContainer.appendChild(newItem);
-        }
+        });
     }
 
     /**

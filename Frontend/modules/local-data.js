@@ -63,7 +63,6 @@ class LocalData {
      * @param {string} value the information about the agenda
      */
     saveLocalStorageItem(key, value) {
-        console.log(key + JSON.stringify(value));
         this.setNewKeyAgenda(key);
         localStorage.setItem(key, JSON.stringify(value));;
     }
