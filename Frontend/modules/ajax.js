@@ -39,6 +39,7 @@ class Ajax {
 
     insertMinute(agenda, callBack) {
         var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", `${this.url}/newminute`, true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -50,7 +51,6 @@ class Ajax {
                 console.error("Datos inválidos.");
             }
         }
-        xhttp.open("POST", `${this.url}/newminute`, true);
         var data = JSON.stringify(agenda);
         xhttp.send(data);
     }
