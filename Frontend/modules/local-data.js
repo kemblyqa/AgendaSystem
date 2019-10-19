@@ -27,9 +27,9 @@ class LocalData {
     isAgendaRegistered(key) {
         var list = JSON.parse(this.getLocalStorageItem("idList"));
         for (var i = 0; i < list.length; i++) {
-            if (list[i] == key) return false;
+            if (list[i] == key) return true;
         }
-        return true;
+        return false;
     }
 
     /**
