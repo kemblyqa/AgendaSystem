@@ -14,7 +14,9 @@ class AgendaManager {
     init() {
         this.clearSessionList();
         var idList = JSON.parse(this.localDataStorage.getLocalStorageItem('idList'));
-        if (!idList === undefined || !idList === null) { //There's no agendas in localstorage
+        if (idList === undefined || idList === null) { //There's no agendas in localstorage
+            localStorage.setItem("idList",JSON.stringify([]));
+        } else {
             for (var i = 0; i < idList.length; i++) {
                 this.agendas.push(JSON.parse(this.localDataStorage.getLocalStorageItem(idList[i])));
             }
