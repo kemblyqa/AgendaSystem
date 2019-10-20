@@ -7,32 +7,6 @@ class LocalData {
     }
 
     /**
-     * @function setKeyAgenda set into the key agenda's list to handle the ids into localstorage
-     * @param {string} newKey the new key to be added
-     * @returns {boolean} true if the key is new and can be added, false if it's already added
-     */
-    setNewKeyAgenda(newKey) {
-        var list = JSON.parse(this.getLocalStorageItem("idList"));
-        if (this.isAgendaRegistered(newKey)) return false;
-        list.ids.push({ id: newKey });
-        localStorage.setItem("idList", JSON.stringify(list));
-        return true;
-    }
-
-    /**
-     * @function isAgendaRegistered verify if a key for an agenda is already registered
-     * @param {string} key the key to access the agenda
-     * @returns {boolean} true if exists, false if not
-     */
-    isAgendaRegistered(key) {
-        var list = JSON.parse(this.getLocalStorageItem("idList"));
-        for (var i = 0; i < list.ids.length; i++) {
-            if (list.ids[i].id == key) return true;
-        }
-        return false;
-    }
-
-    /**
      * @function clearLocalStorageList remove all items added
      */
     clearLocalStorageList() {
@@ -45,12 +19,9 @@ class LocalData {
      * @returns {boolean} true if the element is deleted correctly
      */
     clearLocalStorageItem(key) {
-        var list = JSON.parse(this.getLocalStorageItem("idList"));
-        for (var i = 0; i < list.ids.length; i++) {
-            if (list.ids[i].id == key) {
-                list.ids.splice(i, 1);
+        for (var i = 0; i < localStorage.length; i++) {
+            if (localStorage.key(i) == key) {
                 localStorage.removeItem(key);
-                localStorage.setItem("idList", JSON.stringify(list));
                 return true;
             }
         }
@@ -63,7 +34,6 @@ class LocalData {
      * @param {string} value the information about the agenda
      */
     saveLocalStorageItem(key, value) {
-        this.setNewKeyAgenda(key);
         localStorage.setItem(key, JSON.stringify(value));
     }
 

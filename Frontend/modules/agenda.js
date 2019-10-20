@@ -13,15 +13,9 @@ class AgendaManager {
      */
     init() {
         this.clearSessionList();
-        var idList = JSON.parse(this.localDataStorage.getLocalStorageItem('idList'));
-        if (idList === undefined || idList === null) { //There's no agendas in localstorage
-            localStorage.setItem("idList", JSON.stringify({ ids: [] }));
-        } else {
-            if (idList.ids !== []) {
-                for (var i = 0; i < idList.ids.length; i++) {
-                    this.agendas.push(JSON.parse(this.localDataStorage.getLocalStorageItem(idList.ids[i].id)));
-                }
-            }
+        for (var i = 0; i < localStorage.length; i++) {
+            var agenda = JSON.parse(this.localDataStorage.getLocalStorageItem(localStorage.key(i)));
+            if (agenda.id) this.agendas.push(agenda);
         }
         this.initAgendaServerList();
         this.getVotesData();
@@ -31,13 +25,11 @@ class AgendaManager {
      * @function getAgendaList retrieves the agenda from server
      */
     initAgendaServerList() {
-
         this.xhrRequest.getMinutes((data) => {
             for (var i = 0; i < data.length; i++) {
                 data[i].agenda.saved = true; //property to make item no editable  
                 this.agendas.push(data[i].agenda);
             }
-            console.log(this.agendas);
             this.populateList(this.agendas);
         })
     }
@@ -157,8 +149,7 @@ class AgendaManager {
      */
     getVotesData() {
         this.xhrRequest.getVotes((data) => {
-            console.log(data);
-            window.listVotation = data
+            window.listVotation = data;
         })
     }
 
