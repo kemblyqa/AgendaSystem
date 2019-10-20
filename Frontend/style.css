@@ -3,7 +3,7 @@ body {
     padding: 0;
     height: 100%;
     width: 100%;
-    background-color: lightseagreen;
+    background-color: rgb(126, 255, 249);
     font-family: "Lato", sans-serif;
 }
 
@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     width: 25%;
-    background-color: turquoise;
+    background-color: rgb(126, 255, 249);;
     height: 100%;
     float: left;
     overflow: auto;
