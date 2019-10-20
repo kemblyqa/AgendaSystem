@@ -15,7 +15,7 @@ class AgendaManager {
         this.clearSessionList();
         for (var i = 0; i < localStorage.length; i++) {
             var agenda = JSON.parse(this.localDataStorage.getLocalStorageItem(localStorage.key(i)));
-            if (agenda.id) this.agendas.push(agenda);
+            if (agenda.id && agenda.title && agenda.general && agenda.agenda) this.agendas.push(agenda);
         }
         this.initAgendaServerList();
         this.getVotesData();
