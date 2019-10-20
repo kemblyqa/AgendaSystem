@@ -3,6 +3,10 @@ class Ajax {
         this.url = url;
     }
 
+    /**
+     * @function getMinutes gets the minutes saved in the database
+     * @param {JSON} callBack the callback as response
+     */
     getMinutes(callBack) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -29,6 +33,10 @@ class Ajax {
         xhttp.send();
     }
 
+    /**
+     * @function getVotes get the votation about an agreement
+     * @param {JSON} callBack callBack the callback as response
+     */
     getVotes(callBack) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -55,6 +63,11 @@ class Ajax {
         xhttp.send();
     }
 
+    /**
+     * @function insertMinute adds a minute to the database
+     * @param {*} agenda the agenda to be added
+     * @param {*} callBack callBack the callback as response
+     */
     insertMinute(agenda, callBack) {
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", `${this.url}/newminute`, true);

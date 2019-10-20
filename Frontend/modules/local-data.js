@@ -45,12 +45,11 @@ class LocalData {
      * @returns {boolean} true if the element is deleted correctly
      */
     clearLocalStorageItem(key) {
-        console.log("www");
-        localStorage.removeItem(key);
         var list = JSON.parse(this.getLocalStorageItem("idList"));
         for (var i = 0; i < list.ids.length; i++) {
             if (list.ids[i].id == key) {
                 list.ids.splice(i, 1);
+                localStorage.removeItem(key);
                 localStorage.setItem("idList", JSON.stringify(list));
                 return true;
             }
