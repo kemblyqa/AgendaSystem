@@ -19,7 +19,28 @@ class newAgenda {
         let creation = new elementMinute();
         let pointAgendaEdit = creation.createGeneralAspects('<h2>Aspectos Generales..</h2>', true);
         listElementsCreated.general = pointAgendaEdit.id;
-        window.agenda.saveLocalStorage()
+
+        var agendaItemsContainer = document.getElementById("agenda-list-manager");
+        // Populate with agendas.
+        let element = window.minute.saveData();
+        var newItem = document.createElement("a");
+        var agenda = element;
+        newItem.id = agenda.id;
+        newItem.name = "itemAgenda";
+        newItem.appendChild(document.createTextNode(`Sesión N° ${agenda.id} \n Nombre: ${agenda.title.match(/<h1>(.*?)<\/h1>/)[1]}`));
+        newItem.addEventListener("click", function() {
+            var current = document.getElementsByClassName("active");
+            if (current.length > 0) {
+                current[0].className = current[0].className.replace(" active", "");
+            }
+            this.className += " active";
+            document.getElementById('container-id').style.display = '';
+            window.agenda.showAgendaPreview(agenda);
+        });
+        agendaItemsContainer.appendChild(newItem);
+        window.agenda.saveLocalStorage();
+
+
     }
 
     /**

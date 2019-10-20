@@ -369,3 +369,7 @@ td {
 th {
     font-weight: bold;
 }
+
+.tableBtn {
+    width: 70%;
+}

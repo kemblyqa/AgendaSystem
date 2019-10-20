@@ -24,7 +24,7 @@ class MinuteViewManager {
     /**
      * @function saveData save all information generated
      */
-    saveData() { //FALTA TERMINAR ESTA FUNCION
+    saveData() {
 
         var titleValue = CKEDITOR.instances[listElementsCreated.title].getData();
         var generalValue = CKEDITOR.instances[listElementsCreated.general].getData();

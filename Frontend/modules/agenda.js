@@ -31,6 +31,7 @@ class AgendaManager {
      * @function getAgendaList retrieves the agenda from server
      */
     initAgendaServerList() {
+
         this.xhrRequest.getMinutes((data) => {
             for (var i = 0; i < data.length; i++) {
                 data[i].agenda.saved = true; //property to make item no editable  
@@ -136,6 +137,8 @@ class AgendaManager {
     saveFinal() {
         let dato = window.minute.saveData()
         this.localDataStorage.saveIntoServerItem(dato);
+        alert("Guardado en la base de datos")
+        this.initAgendaServerList();
     }
 
     /**
@@ -144,6 +147,9 @@ class AgendaManager {
     saveLocalStorage() {
         let dato = window.minute.saveData()
         this.localDataStorage.saveLocalStorageItem(dato.id, dato);
+        this.emptyList();
+        this.init();
+
     }
 
     /**
@@ -154,6 +160,30 @@ class AgendaManager {
             console.log(data);
             window.listVotation = data
         })
+    }
+
+    /**
+     * @function emptyList used for empty list
+     */
+    emptyList() {
+        var agendaItemsContainer = document.getElementById("agenda-list-manager");
+        agendaItemsContainer.innerHTML = ``
+        agendaItemsContainer.innerHTML = "";
+        var crearMinute = document.createElement("input");
+        crearMinute.setAttribute("type", "button");
+        crearMinute.setAttribute("value", "Crear Nueva Acta");
+        crearMinute.setAttribute("class", "addMinute");
+        crearMinute.setAttribute("onclick", "agenda.createNewMinute()");
+        var search = document.createElement("input");
+        search.setAttribute("type", "text");
+        search.setAttribute("id", "searchFilterInput");
+        search.setAttribute("placeholder", "Buscar acta por ID...");
+        search.setAttribute("onkeyup", "agenda.searchFilter()");
+
+        agendaItemsContainer.appendChild(crearMinute);
+        agendaItemsContainer.appendChild(search);
+
+        this.agendas = [];
     }
 
 
